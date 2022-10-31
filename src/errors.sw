@@ -6,6 +6,7 @@ pub enum InteractionErrors {
   SenderNotOwner: (),
   StakeZero: (),
   WithdrawZero: (),
-  BorrowZero: ()
+  BorrowZero: (),
+  MoreThanUserDeposited: ()
 
 }

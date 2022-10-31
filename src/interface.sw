@@ -23,13 +23,13 @@ fn totalPools() -> u32
 #[storage(read)]
 fn getPoolInfo(poolId:u8) -> PoolInfo
 #[storage(read)]
-fn calculateInterest(user:Identity, poolId:u8, ) -> u64
+fn calculateInterest(user:Identity, poolId:u8, amount: u64 ) -> u64
 #[storage(read)]
-fn calculatePercentage(total: u64, percent: u64) -> u64
+fn calculatePercentage(whole: u64, percent: u64) -> u64
 #[storage(read)]
 fn getPoolUtilization(poolId: u8) -> u64
 #[storage(read)]
-fn getUserStakes(poolId: u8, user: Identity, ) -> UserInfo
+fn getUserStakes(poolId: u8, user: Identity) -> UserInfo
 #[storage(read)]
 fn getTotalStakesOfUser(poolId: u8, user: Identity) -> u32
 

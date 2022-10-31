@@ -22,7 +22,7 @@ use std::{
     logging::log,
     result::Result,
     revert::require,
-    storage::StorageMap,
+    storage::{StorageMap, StorageVec},
     token::*
 };
 
@@ -41,13 +41,24 @@ pub struct CollateralToken {
     token: ContractId,
 }
 
-
-     pub enum Transaction {
-        staking: bool,
+  pub enum StakingTransaction {
         amountIn: u64,
-        time: u32,
+        time: u64,
         paidOut: u64,
         user: Identity,
+        entries: u64
+    }
+
+      pub enum BorrowingTransaction {
+        amountIn: u64,
+        time: u64,
+        paidOut: u64,
+        user: Identity,
+    }
+
+     pub enum Transaction {
+        staking: StakingTransaction,
+        borrowing: BorrowingTransaction
     }
 
     pub struct TokenInfo {
@@ -97,7 +108,8 @@ storage {
   allPools: StorageVec<PoolInfo> = StorageVec {},
   owner: Identity = Identity::Address(Address { value: owner }),
   isWhiteListed: StorageVec<Whitelist> = StorageVec {},
-  allUserTransactions: StorageVec<Transaction> = StorageMap {},
+  allUserTransactions: StorageVec<Transaction> = StorageVec {},
+  userInfoPerPool: StorageMap<(Identity, u8), Transaction> = StorageMap {},
 }
 
 
@@ -110,41 +122,90 @@ fn getTotalPools() -> u32 {
 }
 
 #[storage(read)]
-fn getPoolInfo(poolId:u8) -> PoolInfo {
+fn getPoolInfoFrom(poolId:u8) -> PoolInfo {
+  // @dev Looping through the length of allPools and checking to see if any match the poolId passed in the param
  let mut i = 0;
         while i < storage.allPools.len() {
-          let x = storage.allPools.get(i).poolId.unwrap();
+          let x = storage.allPools.get(i).unwrap().poolId;
             if (x == poolId ) {
-              x
+              storage.allPools.get(i).unwrap()
             }
-            i += 1;
+            else {
+              i += 1;
+            }
         }
 }
 
 #[storage(read)]
-fn calculateInterest(user:Identity, poolId:u8, index:u16, amount: u64 ) -> u64 {
-  let pool = storage.poolInfo.get(poolId);
-  let userInf = storage.userDetails.get(poolId, user);
-
-  require( amount <=
-
-  )
-
+fn getPoolInfoFrom(poolName:str[15]) -> PoolInfo {
+  // @dev Looping through the length of allPools and checking to see if any match the poolName passed as the param
+ let mut i = 0;
+        while i < storage.allPools.len() {
+          let x = storage.allPools.get(i).unwrap().poolName;
+            if (x == poolName ) {
+              storage.allPools.get(i).unwrap()
+            }
+            else {
+              i += 1;
+            }
+        }
 }
+
 #[storage(read)]
-fn calculatePercentage(total: u64, percent: u64) -> u64 {
+fn calculateInterest(user:Identity, poolId:u8, amount: u64 ) -> u64 {
+  let mut i = 0;
+        while i < storage.allPools.len() {
+          let x = storage.allPools.get(i).unwrap().poolId
+            if (x == poolId ) {
+              let poolInfo = storage.allPools.get(i).unwrap()
+              let userInfo = storage.userInfoPerPool.get(user, poolId).unwrap();
+              require(userInfo.staking.amountIn <= amount, InteractionErrors::MoreThanUserDeposited) //Throw error
+              if (poolInfo.poolType.staking == true) {
+                if (block.timestamp < poolInfo.depositLimiters.endTime) {
+                 return 0
+                }
+              }
+            let utilization: u64 = 0;
+              if (poolInfo.poolType.staking !== true) {
+                 return utilization = getPoolUtilization(poolId);
+                } else {
+                 return utilization = 100;
+                }
+
+              let rewardCalculationStartTime: u64 = (poolInfo.poolType == poolInfo.poolType.staking
+              ?  poolInfo.depositLimiters.endTime
+              : userInfo.borrowing.time)
+
+             return (amount * poolInfo.APY * utilization * (block.timestamp - rewardCalculationStartTime)) / (100 * 100 * 365 days)
+
+
+              } 
+              
+            } else {
+              i += 1;
+            }
+        }
+ 
+
+
+#[storage(read)]
+fn calculatePercentage(whole: u64, percent: u64) -> u64 {
+
+  if (percent == 0) return 0;
+ let percentage: u64 = (whole * 100) / percent;
+ return percentage;
 
 
 }
 #[storage(read)]
 fn getPoolUtilization(poolId: u8) -> u64 {
-  let pool = storage.poolInfo.get(poolId);
+  let pool = storage.poolInfo.get(poolId).unwrap();
 
   if (pool.funds.balance == 0) {
     0
   }
 
-  let utilization: u64 = calculatePercentage(pool.funds.balance, pool.funds.loanedBalance)
+  let utilization: u64 = calculatePercentage(pool.funds.balance, pool.funds.loanedBalance);
 
   if (utilization > 100) {
     utilization = 100;
@@ -156,17 +217,21 @@ fn getPoolUtilization(poolId: u8) -> u64 {
 #[storage(read)]
 fn getUserStakes(poolId: u8, user: Identity) -> UserInfo {
 
-  let TotalStakes = storage.userDetails.get(poolId, user)
+  let userStakes = storage.userDetails.get(poolId, user).unwrap()
 
-
+return userStakes.staking
 
 }
+
+
 #[storage(read)]
 fn getTotalStakesOfUser(poolId: u8, user: Identity) -> u32 {
-   let TotalStakes = storage.userDetails.get(poolId, user);
-   TotalStakes.numberOfTransactions
+   let totalStakes = storage.userDetails.get(poolId, user).unwrap()
+   totalStakes.staking.entries
 
 }
+
+
 
 
 // All Action Functions ------------->
