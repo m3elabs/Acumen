@@ -23,12 +23,14 @@ use std::{
     result::Result,
     revert::require,
     storage::StorageMap,
-    token::transfer,
+    token::*
 };
 
-pub enum PoolType {
-  Staking: bool,
-  Loan: bool
+const BASE_TOKEN = ~ContractId::from(0x9ae5b658754e096e4d681c548daf46354495a437cc61492599e33fc64dcdc30c);
+
+
+pub struct PoolType {
+  staking: bool,
 }
 
 pub struct ReceiptToken {
@@ -39,17 +41,13 @@ pub struct CollateralToken {
     token: ContractId,
 }
 
-  pub enum TransactionType {
-        Staking: bool,
-        Borrow: bool
-    }
 
-     pub struct UserInfo {
-        transactionType: TransactionType,
-        amount: u64,
+     pub enum Transaction {
+        staking: bool,
+        amountIn: u64,
         time: u32,
         paidOut: u64,
-        user: Identity
+        user: Identity,
     }
 
     pub struct TokenInfo {
@@ -74,7 +72,7 @@ pub struct CollateralToken {
        loanedBalance: u64
     }
 
-    pub struct PoolInfo {
+    pub enum PoolInfo {
         poolName:str[15],
         poolType:PoolType,
         APY: u32,
@@ -83,49 +81,90 @@ pub struct CollateralToken {
         uniqueUsers: u64,
         tokenInfo: TokenInfo ,
         funds: Funds,
+        poolId: u8,
         depositLimiters: DepositLimiters
     }
 
+    pub enum Whitelist {
+      user : Identity,
+      status: bool,
+      poolId: u8
+    }
+
+  
+
 storage {
-  poolBalance: StorageMap<u8, u64> = StorageMap {},
-  loanedBalance: StorageMap<u8, u64> = StorageMap {},
+  allPools: StorageVec<PoolInfo> = StorageVec {},
   owner: Identity = Identity::Address(Address { value: owner }),
-  isInPool: StorageMap<(u8, Identity), bool> = StorageMap {},
-  isWhiteListed: StorageMap<(u8, Identity), bool> = StorageMap {},
-  userDetails: StorageMap<(u8, Identity), UserInfo > = StorageMap {},
-  totalUserAmountStaked: StorageMap<(u8, Identity), u64 > = StorageMap {},
-  totalUserAmountBorrowed: StorageMap<(u8, Identity), u64 > = StorageMap {},
+  isWhiteListed: StorageVec<Whitelist> = StorageVec {},
+  allUserTransactions: StorageVec<Transaction> = StorageMap {},
 }
 
 
 impl AcumenCore for Contract {
-   // All Read Functions ------------->
+   // @dev All Read Functions ------------->
 #[storage(read)]
-fn totalPools() -> u32 {
-
+fn getTotalPools() -> u32 {
+  // @dev Returning the length of allPools storage vector that contains all the pools. This acts similar to an array 
+   storage.allPools.len();
 }
+
 #[storage(read)]
 fn getPoolInfo(poolId:u8) -> PoolInfo {
-
+ let mut i = 0;
+        while i < storage.allPools.len() {
+          let x = storage.allPools.get(i).poolId.unwrap();
+            if (x == poolId ) {
+              x
+            }
+            i += 1;
+        }
 }
+
 #[storage(read)]
-fn calculateInterest(user:Identity, poolId:u8, ) -> u64 {
+fn calculateInterest(user:Identity, poolId:u8, index:u16, amount: u64 ) -> u64 {
+  let pool = storage.poolInfo.get(poolId);
+  let userInf = storage.userDetails.get(poolId, user);
+
+  require( amount <=
+
+  )
 
 }
 #[storage(read)]
 fn calculatePercentage(total: u64, percent: u64) -> u64 {
 
-}
-#[storage(read)]
-fn getPoolUtilization(poolId: u8) -> u64 {
 
 }
 #[storage(read)]
-fn getUserStakes(poolId: u8, user: Identity, ) -> UserInfo {
+fn getPoolUtilization(poolId: u8) -> u64 {
+  let pool = storage.poolInfo.get(poolId);
+
+  if (pool.funds.balance == 0) {
+    0
+  }
+
+  let utilization: u64 = calculatePercentage(pool.funds.balance, pool.funds.loanedBalance)
+
+  if (utilization > 100) {
+    utilization = 100;
+  }
+
+  utilization;
+
+}
+#[storage(read)]
+fn getUserStakes(poolId: u8, user: Identity) -> UserInfo {
+
+  let TotalStakes = storage.userDetails.get(poolId, user)
+
+
 
 }
 #[storage(read)]
 fn getTotalStakesOfUser(poolId: u8, user: Identity) -> u32 {
+   let TotalStakes = storage.userDetails.get(poolId, user);
+   TotalStakes.numberOfTransactions
 
 }
 
@@ -140,10 +179,12 @@ fn recoverAllTokens(token: ContractId, amount: u64) {
 #[storage(read, write)]
 fn setPoolPaused(poolId: u8, flag: bool) {
 
+
 }
 
 #[storage(read, write)]
 fn deposit(poolId: u8, amount: u64) {
+
 
 }
 

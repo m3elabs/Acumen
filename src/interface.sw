@@ -1,6 +1,16 @@
 library interface;
 
-use std::{contract_id::ContractId, identity::Identity};
+use std::{contract_id::ContractId, identity::Identity,
+ context::call_frames::{
+        contract_id,
+        msg_asset_id,
+    },
+    context::msg_amount,
+    token::{
+        mint_to_address,
+        transfer_to_address,
+    }
+    };
 
 
 

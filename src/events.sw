@@ -1,7 +1,7 @@
 library events;
 
 use std::contract_id::ContractId;
-use std::identity::Address;
+use std::address::Address;
 use std::identity::Identity;
 
 pub struct DepositEvent {
