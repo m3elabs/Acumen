@@ -2,20 +2,23 @@ library errors;
 
 
 pub enum InteractionErrors {
-
   SenderNotOwner: (),
   StakeZero: (),
   WithdrawZero: (),
   BorrowZero: (),
   MoreThanUserDeposited: (),
-  DepositsNotAllowedRightNow (),
+  DepositsNotAllowedRightNow: (),
+  ClaimsNotAllowedRightNow: (),
   PoolisPaused: (),
   AmountExceedsAllowedDeposit: (),
   PoolisAtCapacity: ();
   NotTheCorrectCollateral: (),
   WrongPoolType: (),
   WithdrawingBeforeExpiration: (),
-  FundUtilizationIsTooHigh: ()
-
-
+  FundUtilizationIsTooHigh: (),
+  NotWhiteListed: (),
+  PoolIsEmpty: (),
+  PayingMoreThanBorrowed: (),
+  QuarterlyPayoutDisabled: (),
+  TimesIncompatible: ()
 }

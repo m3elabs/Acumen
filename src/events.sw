@@ -40,6 +40,12 @@ poolId: u8,
 amount: u64
 }
 
+pub struct TransferredEvent {
+address: Address,
+poolId: u8,
+amount: u64
+}
+
 pub struct RepaidEvent {
 address: Address,
 poolId: u8,
