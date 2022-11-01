@@ -5,7 +5,7 @@ use std::address::Address;
 use std::identity::Identity;
 
 pub struct DepositEvent {
-address: Address,
+address: Identity,
 poolId: u8,
 amount: u64
 }

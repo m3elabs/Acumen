@@ -45,22 +45,20 @@ fn setPoolPaused(poolId: u8, flag: bool)
 fn deposit(poolId: u8, amount: u64)
 
 #[storage(read, write)]
-fn emergencyWithdraw(poolId: u8, index: u32 , amount: u64 )
+fn emergencyWithdraw(poolId: u8, amount: u64, user: Identity )
+
 
 #[storage(read, write)]
-fn deleteStakeIfEmpty(poolId: u8, index: u32 )
+fn withdraw(poolId: u8, amount: u64 )
 
 #[storage(read, write)]
-fn withdraw(poolId: u8, index: u32 , amount: u64 )
-
-#[storage(read, write)]
-fn transferRewards(poolId: u8, index: u32 , duration: u64, amount: u64 )
+fn transferRewards(poolId: u8, duration: u64, amount: u64 )
 
 #[storage(read, write)]
 fn borrow(poolId: u8, amount: u64)
 
 #[storage(read, write)]
-fn repay(poolId: u8, index: u32, amount: u64)
+fn repay(poolId: u8, amount: u64)
 
 #[storage(read, write)]
 fn claimQuarterlyPayout(poolId: u8, index: u32)

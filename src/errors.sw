@@ -7,6 +7,15 @@ pub enum InteractionErrors {
   StakeZero: (),
   WithdrawZero: (),
   BorrowZero: (),
-  MoreThanUserDeposited: ()
+  MoreThanUserDeposited: (),
+  DepositsNotAllowedRightNow (),
+  PoolisPaused: (),
+  AmountExceedsAllowedDeposit: (),
+  PoolisAtCapacity: ();
+  NotTheCorrectCollateral: (),
+  WrongPoolType: (),
+  WithdrawingBeforeExpiration: (),
+  FundUtilizationIsTooHigh: ()
+
 
 }
