@@ -53,7 +53,7 @@ pub struct Funds {
 pub struct PoolInfo {
     poolName: str[15],
     poolTypeIsStaking: bool,
-    apy: u32,
+    apy: u64,
     paused: bool,
     quarterlyPayout: bool,
     uniqueUsers: u64,

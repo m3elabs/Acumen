@@ -18,6 +18,15 @@ use events::{
 };
 use errors::{InteractionErrors};
 use interface::AcumenCore;
+use interface::{
+  PoolInfo,
+  Whitelist,
+  BorrowingTransaction,
+  StakingTransaction,
+  Transaction,
+  Funds,
+  DepositLimiters
+  };
 
 use std::{
     address::Address,
@@ -43,62 +52,6 @@ const BASE_TOKEN = ContractId::from(0x9ae5b658754e096e4d681c548daf46354495a437cc
 const DAY: u64 = 86400;
 const MONTH: u64 = 2629743;
 
-  pub struct StakingTransaction {
-        balance: u64,
-        time: u64,
-        user: Identity,
-        entries: u64,
-        poolUser: bool,
-        withdrawTime: u64,
-        rewardsPaid: u64
-    }
-
-      pub struct BorrowingTransaction {
-        balance: u64,
-        time: u64,
-        user: Identity,
-        poolUser: bool,
-    }
-
-     pub struct Transaction {
-        staking: StakingTransaction,
-        borrowing: BorrowingTransaction
-    }
-
-    pub struct DepositLimiters {
-        duration: u64,
-        startTime: u64, // >>Deposits<< Start Time
-        endTime: u64, // >>Deposits<< End Time
-        limitPerUser:u64,
-        capacity: u64,
-        maxUtilization: u64
-    }
-
-    pub struct Funds {
-        balance: u64,
-       loanedBalance: u64
-    }
-
-    pub struct PoolInfo {
-        poolName:str[15],
-        poolTypeIsStaking: bool,
-        apy: u64,
-        paused: bool,
-        quarterlyPayout:bool, 
-        uniqueUsers: u64,
-        tokenInfo: ContractId,
-        funds: Funds,
-        pool_id: u8,
-        depositLimiters: DepositLimiters
-    }
-
-    pub struct Whitelist {
-      user : Identity,
-      status: bool,
-      pool_id: u8
-    }
-
-  
 
 storage {
   allPools: StorageVec<PoolInfo> = StorageVec {},
