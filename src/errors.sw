@@ -21,5 +21,5 @@ pub enum InteractionErrors {
     PayingMoreThanBorrowed: (),
     QuarterlyPayoutDisabled: (),
     TimesIncompatible: (),
-    PastRecommendedUtilization: ()
+    PastRecommendedUtilization: (),
 }

@@ -17,7 +17,7 @@ pub struct WithdrawEvent {
 }
 
 pub struct EmergencyWithdrawEvent {
-    address:Identity,
+    address: Identity,
     poolId: u8,
     amount: u64,
 }
@@ -58,6 +58,6 @@ pub struct RecoveredEvent {
 }
 
 pub struct RecievedEvent {
-    address:Identity,
+    address: Identity,
     amount: u64,
 }

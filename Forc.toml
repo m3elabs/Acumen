@@ -2,6 +2,6 @@
 authors = ["Zach Miller"]
 entry = "main.sw"
 license = "Apache-2.0"
-name = "counter_contract"
+name = "acumen"
 
 [dependencies]

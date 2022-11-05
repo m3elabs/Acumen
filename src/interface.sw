@@ -11,9 +11,6 @@ use std::{
     token::*,
 };
 
-const DAY: u64 = 86400;
-const MONTH: u64 = 2629743;
-
 pub struct StakingTransaction {
     balance: u64,
     time: u64,
@@ -74,20 +71,19 @@ abi AcumenCore {
     #[storage(read)]
     fn get_total_pools() -> u64;
     #[storage(read)]
-    fn get_pool_info_from_id(pool_id:u8) -> PoolInfo;
+    fn get_pool_info_from_id(pool_id: u8) -> PoolInfo;
     #[storage(read)]
     fn get_user_stakes_info_per_pool(poolId: u8) -> Transaction;
     #[storage(read)]
     fn get_total_stakes_of_user(poolId: u8) -> u64;
 
 
+
 // All Action Functions ------------->
     // #[storage(write)]
     // fn set_owner(identity: Identity);
-
     // #[storage(read, write)]
     // fn recover_all_tokens(token: ContractId, amount: u64);
-
     #[storage(read, write)]
     fn set_pool_paused(poolId: u8, flag: bool);
 
@@ -106,7 +102,7 @@ abi AcumenCore {
     #[storage(read, write)]
     fn claim_quarterly_payout(poolId: u8);
 
-    #[storage(read, write)]
+    #[storage(write)]
     fn whitelist(poolId: u8, status: bool);
 
     #[storage(read, write)]

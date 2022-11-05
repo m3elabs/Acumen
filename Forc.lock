@@ -3,7 +3,7 @@ name = 'core'
 source = 'path+from-root-6A09A1886494359D'
 
 [[package]]
-name = 'counter_contract'
+name = 'acumen'
 source = 'root'
 dependencies = ['std']
 
