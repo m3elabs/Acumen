@@ -32,15 +32,9 @@ use std::{
     address::Address,
     auth::msg_sender,
     block::timestamp,
-    call_frames::{
-        contract_id,
-        msg_asset_id,
-    },
+    call_frames::{msg_asset_id, contract_id},
+    context:: msg_amount,
     constants::ZERO_B256,
-    context::{
-        msg_amount,
-        this_balance,
-    },
     contract_id::ContractId,
     identity::Identity,
     logging::log,
@@ -53,21 +47,23 @@ use std::{
     token::*,
 };
 
-const BASE_TOKEN = ContractId::from(0x0000000000000000000000000000000000000000000000000000000000000000);
+const TEST_ETH: b256 = 0x0000000000000000000000000000000000000000000000000000000000000000;
+const BASE_TOKEN: ContractId = ContractId:: from(TEST_ETH);
+
 const DAY: u64 = 86400;
 const MONTH: u64 = 2629743;
 
+
 storage {
     allPools: StorageVec<PoolInfo> = StorageVec {},
-    isWhiteListed: StorageMap<(Identity, u8), bool> = StorageMap {},
-    userInfoPerPool: StorageMap<(Identity, u8), Transaction> = StorageMap {},
+    isWhiteListed: StorageMap<(Identity, u64), bool> = StorageMap {},
+    userInfoPerPool: StorageMap<(Identity, u64), Transaction> = StorageMap {},
     totalDeposits: StorageMap<Identity, u64> = StorageMap {},
     totalLoans: StorageMap<Identity, u64> = StorageMap {},
-  // owner: Identity = Identity,
 }
 
 #[storage(read, write)]
-fn transfer_rewards(pool_id: u8, duration: u64, amount: u64) {
+fn transfer_rewards(pool_id: u64, duration: u64, amount: u64) {
     let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
     let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
@@ -97,7 +93,7 @@ fn transfer_rewards(pool_id: u8, duration: u64, amount: u64) {
 }
 
 #[storage(read)]
-fn calculate_interest(pool_id: u8, amount: u64) -> u64 {
+fn calculate_interest(pool_id: u64, amount: u64) -> u64 {
     let ts: u64 = timestamp();
     let pool_info: PoolInfo = storage.allPools.get(pool_id).unwrap();
     let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
@@ -116,7 +112,7 @@ fn calculate_interest(pool_id: u8, amount: u64) -> u64 {
         utilization = 100;
     };
 
-    if (pool_info.poolTypeIsStaking == true) {
+    if (pool_info.poolTypeIsStaking) {
         reward_calculation_start_time = pool_info.depositLimiters.endTime;
     } else {
         reward_calculation_start_time = user_info.borrowing.time;
@@ -124,6 +120,7 @@ fn calculate_interest(pool_id: u8, amount: u64) -> u64 {
 
     return (amount * pool_info.apy * utilization * (ts - reward_calculation_start_time)) / (100 * 100 * 365 * DAY);
 }
+
 fn calculate_percentage(whole: u64, percent: u64) -> u64 {
     if (percent == 0) {
         return 0
@@ -133,7 +130,7 @@ fn calculate_percentage(whole: u64, percent: u64) -> u64 {
 }
 
 #[storage(read)]
-fn get_pool_utilization(pool_id: u8) -> u64 {
+fn get_pool_utilization(pool_id: u64) -> u64 {
     let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
 
     if (pool.funds.balance == 0) {
@@ -150,7 +147,7 @@ fn get_pool_utilization(pool_id: u8) -> u64 {
 }
 
 #[storage(read, write)]
-fn emergency_withdraw(pool_id: u8, amount: u64) {
+fn emergency_withdraw(pool_id: u64, amount: u64) {
     let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
     let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
@@ -186,18 +183,18 @@ impl AcumenCore for Contract {
     }
 
     #[storage(read)]
-    fn get_pool_info_from_id(pool_id: u8) -> PoolInfo {
+    fn get_pool_info_from_id(pool_id: u64) -> PoolInfo {
         return storage.allPools.get(pool_id).unwrap()
     }
 
     #[storage(read)]
-    fn get_user_stakes_info_per_pool(pool_id: u8) -> Transaction {
+    fn get_user_stakes_info_per_pool(pool_id: u64) -> Transaction {
         let user_stakes: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
         return user_stakes;
     }
 
     #[storage(read)]
-    fn get_total_stakes_of_user(pool_id: u8) -> u64 {
+    fn get_total_stakes_of_user(pool_id: u64) -> u64 {
         let total_stakes: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
         return total_stakes.staking.entries;
     }
@@ -211,18 +208,19 @@ impl AcumenCore for Contract {
 //   transfer(amount, BASE_TOKEN, owner);
 // }
     #[storage(read, write)]
-    fn set_pool_paused(pool_id: u8, flag: bool) {
+    fn set_pool_paused(pool_id: u64, flag: bool) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
         pool.paused = flag;
         storage.allPools.set(pool_id, pool);
     }
 
     #[storage(read, write)]
-    fn deposit(pool_id: u8, amount: u64) {
+    fn deposit(pool_id: u64, amount: u64) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
-        require(amount <= pool.depositLimiters.limitPerUser, InteractionErrors::AmountExceedsAllowedDeposit);
-        require(pool.funds.balance + amount <= pool.depositLimiters.capacity, InteractionErrors::PoolisAtCapacity);
-         require(msg_asset_id() == BASE_TOKEN, InteractionErrors::NotTheCorrectCollateral);
+        // require(amount <= pool.depositLimiters.limitPerUser, InteractionErrors::AmountExceedsAllowedDeposit);
+        // require(pool.funds.balance + amount <= pool.depositLimiters.capacity, InteractionErrors::PoolisAtCapacity);
+        // require(pool.paused, InteractionErrors::PoolisPaused);
+        //  require(msg_asset_id() == BASE_TOKEN, InteractionErrors::NotTheCorrectCollateral);
 
         let new_transact: Transaction = Transaction {
             staking: StakingTransaction {
@@ -241,8 +239,8 @@ impl AcumenCore for Contract {
                 poolUser: false,
             },
         };
-        if (storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id)).staking.entries == 0)
-        {
+
+        if (storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id)).staking.entries == 0) {
             storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), new_transact);
         };
 
@@ -253,17 +251,17 @@ impl AcumenCore for Contract {
         user_info.staking.user = msg_sender().unwrap();
         user_info.staking.entries = user_info.staking.entries + 1;
 
-        if (!user_info.staking.poolUser) {
+        if (user_info.staking.poolUser == false) {
             pool.uniqueUsers = pool.uniqueUsers + 1;
             user_info.staking.poolUser = true;
         }
 
         storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
 
-        require(!pool.paused, InteractionErrors::PoolisPaused);
-        if (pool.poolTypeIsStaking == true) {
-            require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
-        };
+      
+        // if (pool.poolTypeIsStaking == true) {
+        //     require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
+        // };
 
        
         force_transfer_to_contract(amount, pool.tokenInfo, contract_id());
@@ -275,15 +273,15 @@ impl AcumenCore for Contract {
 
         storage.totalDeposits.insert(msg_sender().unwrap(), amount);
 
-        log(DepositEvent {
-            address: msg_sender().unwrap(),
-            poolId: pool_id,
-            amount: amount,
-        })
+        // log(DepositEvent {
+        //     address: msg_sender().unwrap(),
+        //     poolId: pool_id,
+        //     amount: amount,
+        // })
     }
 
     #[storage(read, write)]
-    fn withdraw(pool_id: u8, amount: u64) {
+    fn withdraw(pool_id: u64, amount: u64) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
@@ -323,7 +321,7 @@ impl AcumenCore for Contract {
     }
 
     #[storage(read, write)]
-    fn borrow(pool_id: u8, amount: u64) {
+    fn borrow(pool_id: u64, amount: u64) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
 
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
@@ -361,7 +359,7 @@ impl AcumenCore for Contract {
     }
 
     #[storage(read, write)]
-    fn repay(pool_id: u8, amount: u64) {
+    fn repay(pool_id: u64, amount: u64) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
@@ -397,7 +395,7 @@ impl AcumenCore for Contract {
     }
 
     #[storage(read, write)]
-    fn claim_quarterly_payout(pool_id: u8) {
+    fn claim_quarterly_payout(pool_id: u64) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
         require(pool.quarterlyPayout == true, InteractionErrors::QuarterlyPayoutDisabled);
@@ -418,7 +416,7 @@ impl AcumenCore for Contract {
     }
 
     #[storage(write)]
-    fn whitelist(pool_id: u8, status: bool) {
+    fn whitelist(pool_id: u64, status: bool) {
         storage.isWhiteListed.insert((msg_sender().unwrap(), pool_id), status);
     }
 
@@ -434,8 +432,8 @@ impl AcumenCore for Contract {
         max_utilization: u64,
         capacity: u64,
         limit_per_user: u64,
-    ) -> u8 {
-        let mut id: u8 = 0; 
+    ) -> u64 {
+        let mut id: u64 = 0; 
 //  require(msg_sender().unwrap() == OWNER, InteractionErrors::NotTheOwner);
         if (storage.allPools.len() == 0) {
             id = 0;
@@ -476,7 +474,7 @@ impl AcumenCore for Contract {
 
     #[storage(read, write)]
     fn edit_pool(
-        pool_id: u8,
+        pool_id: u64,
         pool_name: str[15],
         pause: bool,
         apy: u32,
