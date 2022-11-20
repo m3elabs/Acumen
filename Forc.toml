@@ -5,3 +5,8 @@ license = "Apache-2.0"
 name = "acumen"
 
 [dependencies]
+
+[[test]]
+harness = true
+name = "integration_tests"
+path = "tests/harness.rs"

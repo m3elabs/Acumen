@@ -189,8 +189,7 @@ impl AcumenCore for Contract {
 
     #[storage(read)]
     fn get_user_stakes_info_per_pool(pool_id: u64) -> Transaction {
-        let user_stakes: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
-        return user_stakes;
+         return storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
     }
 
     #[storage(read)]
@@ -219,9 +218,8 @@ impl AcumenCore for Contract {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
         // require(amount <= pool.depositLimiters.limitPerUser, InteractionErrors::AmountExceedsAllowedDeposit);
         // require(pool.funds.balance + amount <= pool.depositLimiters.capacity, InteractionErrors::PoolisAtCapacity);
-        // require(pool.paused, InteractionErrors::PoolisPaused);
-        //  require(msg_asset_id() == BASE_TOKEN, InteractionErrors::NotTheCorrectCollateral);
-
+        // require(!pool.paused, InteractionErrors::PoolisPaused);
+    
         let new_transact: Transaction = Transaction {
             staking: StakingTransaction {
                 balance: 0,
@@ -259,9 +257,9 @@ impl AcumenCore for Contract {
         storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
 
       
-        // if (pool.poolTypeIsStaking == true) {
-        //     require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
-        // };
+        if (pool.poolTypeIsStaking == true) {
+            require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
+        };
 
        
         force_transfer_to_contract(amount, pool.tokenInfo, contract_id());
