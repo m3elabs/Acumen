@@ -259,7 +259,7 @@ impl AcumenCore for Contract {
       
         if (pool.poolTypeIsStaking == true) {
             require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
-        }
+        };
 
        
         force_transfer_to_contract(amount, pool.tokenInfo, contract_id());
