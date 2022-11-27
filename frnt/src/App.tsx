@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { TAI64 } from "tai64";
 import { Wallet, BN, bn } from "fuels";
 import "./App.css";
 
@@ -16,7 +17,7 @@ const WALLET_SECRET =
 // E.g. Contract id: 0xa326e3472fd4abc417ba43e369f59ea44f8325d42ba6cf71ec4b58123fd8668a
 // const CONTRACT_ID = "0xa326e3472fd4abc417ba43e369f59ea44f8325d42ba6cf71ec4b58123fd8668a"
 const CONTRACT_ID =
-  "0xf6fd79d500dadb57f8cf249a493b6b7d43b22b806e61da45b8b638ca9b5b4a44";
+  "0x0d9c5c7a0f0d620fd279086dc29543e673fc80c3c16471b98690d335e65a1b91";
 
 // Create a "Wallet" using the private key above.
 const wallet1 = Wallet.fromPrivateKey(
@@ -63,6 +64,37 @@ function App() {
     console.log("transaction", deposit);
   }
 
+  async function withdraw(e:any) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const withdraw = await contract.functions.withdraw(bn(String(data.get("PoolID"))), bn(String(data.get("Amount"))))
+    .txParams({ gasPrice: 1 })
+    .call();
+
+    console.log("withdraw", withdraw);
+  }
+
+  async function borrow(e:any) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const withdraw = await contract.functions.withdraw(bn(String(data.get("PoolID"))), bn(String(data.get("Amount"))))
+    .txParams({ gasPrice: 1 })
+    .call();
+
+    console.log("withdraw", withdraw);
+  }
+
+
+  async function repay(e:any) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const withdraw = await contract.functions.withdraw(bn(String(data.get("PoolID"))), bn(String(data.get("Amount"))))
+    .txParams({ gasPrice: 1 })
+    .call();
+
+    console.log("withdraw", withdraw);
+  }
+
   async function createPool(e:any)  {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -80,16 +112,16 @@ function App() {
     } else {
       isStaking = false;
     }
-
+   
     const poolId = await contract.functions
       .create_pool(
         isStaking,
         String(data.get("poolName")),
         new BN(Number(data.get("apy"))),
         qrtPayout,
-        new BN(Number(data.get("duration"))),
-        new BN(Number(data.get("startTime"))),
-        new BN(Number(data.get("endTime"))),
+        new BN(Number(TAI64.fromUnix(Number(data.get("duration"))))),
+        new BN(Number(TAI64.fromUnix(Number(data.get("startTime"))))),
+        new BN(Number(TAI64.fromUnix(Number(data.get("endTime"))))),
         new BN(Number(data.get("maxUtilization"))),
         bn.parseUnits(String(data.get("capacity"))),
         new BN(Number(data.get("limitPerPerson")))
@@ -110,12 +142,12 @@ function App() {
   async function poolDetails() {
     const value1 = await contract.functions.get_pool_info_from_id(0).get();
     const { value } = value1;
-    console.log(value);
+    console.log(Number(value.depositLimiters.startTime));
   }
 
   async function userDetails() {
     const value1 = await contract.functions.get_total_stakes_of_user(0).get();
-    // const {value} = value1;
+   const {value} = value1;
     console.log(value1);
   }
 
@@ -144,10 +176,11 @@ function App() {
   }
 
   useEffect(() => {
+    console.log(TAI64.fromUnix(1669583740844).toString())
     allPools();
     checkBal();
     poolDetails();
-    // userDetails();
+    //userDetails();
   }, []);
 
   return (
@@ -169,19 +202,26 @@ function App() {
 
         <div className="App-items">
           <p>Withdraw</p>
-          <input className=""></input>
+          <form onSubmit={withdraw}>
+          <input name="PoolID" className=""></input>
+          <input name="Amount" className=""></input>
           <button type="submit">Submit</button>
+          </form>
         </div>
 
         <div className="App-items">
           <p>Borrow</p>
-          <input className=""></input>
+          <form onSubmit={borrow}>
+          <input name="PoolID" className=""></input>
+          <input name="Amount" className=""></input>
           <button type="submit">Submit</button>
+          </form>
         </div>
 
         <div className="App-items">
           <p>Repay</p>
-          <input className=""></input>
+          <input name="PoolID" className=""></input>
+          <input name="Amount" className=""></input>
           <button type="submit">Submit</button>
         </div>
 

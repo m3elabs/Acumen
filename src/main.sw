@@ -29,6 +29,7 @@ use interface::{
 };
 
 use std::{
+    u256::U256,
     address::Address,
     auth::msg_sender,
     block::timestamp,
@@ -85,11 +86,11 @@ fn transfer_rewards(pool_id: u64, duration: u64, amount: u64) {
     
     storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
 
-    log(TransferredEvent {
-        address: msg_sender().unwrap(),
-        poolId: pool_id,
-        amount: amount,
-    })
+    // log(TransferredEvent {
+    //     address: msg_sender().unwrap(),
+    //     poolId: pool_id,
+    //     amount: amount,
+    // })
 }
 
 #[storage(read)]
@@ -106,7 +107,7 @@ fn calculate_interest(pool_id: u64, amount: u64) -> u64 {
         }
     };
 
-    if (!pool_info.poolTypeIsStaking) {
+    if (pool_info.poolTypeIsStaking == false) {
         utilization = get_pool_utilization(pool_id);
     } else {
         utilization = 100;
@@ -122,10 +123,11 @@ fn calculate_interest(pool_id: u64, amount: u64) -> u64 {
 }
 
 fn calculate_percentage(whole: u64, percent: u64) -> u64 {
+  let zero: u64 = 0;
     if (percent == 0) {
         return 0
     };
-    let percentage: u64 = (whole * 100) / percent;
+    let percentage = (U256::from((0,0,0,whole)) * U256::from((0,0,0,100)) /  U256::from((0,0,0,percent))).as_u64().unwrap();
     return percentage;
 }
 
@@ -153,10 +155,10 @@ fn emergency_withdraw(pool_id: u64, amount: u64) {
 
     pool.funds.balance = pool.funds.balance - amount;
 
-    user_info.staking.withdrawTime = timestamp();
-    user_info.staking.balance = user_info.staking.balance - amount;
+    // user_info.staking.withdrawTime = timestamp();
+    // user_info.staking.balance = user_info.staking.balance - amount;
 
-    require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
+    // require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
 
     transfer(amount, pool.tokenInfo, msg_sender().unwrap());
 
@@ -167,11 +169,11 @@ fn emergency_withdraw(pool_id: u64, amount: u64) {
     let fetch_deposits: u64 = storage.totalDeposits.get(msg_sender().unwrap());
     storage.totalDeposits.insert(msg_sender().unwrap(), fetch_deposits - amount);
 
-    log(EmergencyWithdrawEvent {
-        address: msg_sender().unwrap(),
-        poolId: pool_id,
-        amount: amount,
-    })
+    // log(EmergencyWithdrawEvent {
+    //     address: msg_sender().unwrap(),
+    //     poolId: pool_id,
+    //     amount: amount,
+    // })
 }
 
 impl AcumenCore for Contract {
@@ -256,10 +258,12 @@ impl AcumenCore for Contract {
 
         storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
 
-      
-        if (pool.poolTypeIsStaking == true) {
-            require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
-        };
+      // Doesnt like condition below 
+
+
+        // if (pool.poolTypeIsStaking == true) {
+        //     require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
+        // };
 
        
         force_transfer_to_contract(amount, pool.tokenInfo, contract_id());
@@ -284,8 +288,8 @@ impl AcumenCore for Contract {
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
         if (timestamp() < pool.depositLimiters.endTime) {
-            emergency_withdraw(pool_id, amount);
-            return
+           emergency_withdraw(pool_id, amount);
+           return;
         }
 
         require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
@@ -311,11 +315,11 @@ impl AcumenCore for Contract {
         storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
         storage.allPools.set(pool_id, pool);
 
-        log(WithdrawEvent {
-            address: msg_sender().unwrap(),
-            poolId: pool_id,
-            amount: amount,
-        })
+        // log(WithdrawEvent {
+        //     address: msg_sender().unwrap(),
+        //     poolId: pool_id,
+        //     amount: amount,
+        // })
     }
 
     #[storage(read, write)]
