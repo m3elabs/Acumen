@@ -443,7 +443,7 @@ impl AcumenCore for Contract {
             id = storage.allPools.len() + 1;
         }
         if (pool_is_staking == true) {
-            require(start_time < end_time, InteractionErrors::TimesIncompatible)
+            require(start_time + 4611686018427387914 < end_time + 4611686018427387914, InteractionErrors::TimesIncompatible)
         };
 
         let new_pool: PoolInfo = PoolInfo {
@@ -461,8 +461,8 @@ impl AcumenCore for Contract {
             pool_id: id,
             depositLimiters: DepositLimiters {
                 duration: duration,
-                startTime: start_time,
-                endTime: end_time,
+                startTime: start_time + 4611686018427387914,
+                endTime: start_time + 4611686018427387914,
                 limitPerUser: limit_per_user,
                 capacity: capacity,
                 maxUtilization: max_utilization,

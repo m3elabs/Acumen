@@ -17,7 +17,7 @@ const WALLET_SECRET =
 // E.g. Contract id: 0xa326e3472fd4abc417ba43e369f59ea44f8325d42ba6cf71ec4b58123fd8668a
 // const CONTRACT_ID = "0xa326e3472fd4abc417ba43e369f59ea44f8325d42ba6cf71ec4b58123fd8668a"
 const CONTRACT_ID =
-  "0x0d9c5c7a0f0d620fd279086dc29543e673fc80c3c16471b98690d335e65a1b91";
+  "0xc25a3d8ec5369db57961764acb65cb9040938f0c0ff6494d3947ac822ac4adb1";
 
 // Create a "Wallet" using the private key above.
 const wallet1 = Wallet.fromPrivateKey(
@@ -35,11 +35,9 @@ const address =
 function App() {
   const checkBal = async () => {
     console.log(
-      Number(
-        await wallet1.getBalance(
-          "0x0000000000000000000000000000000000000000000000000000000000000000"
-        )
-      )
+     
+        contract.id
+
     );
   };
   // useEffect(() => {
@@ -112,16 +110,37 @@ function App() {
     } else {
       isStaking = false;
     }
+
+
+
+    // const date = new Date(String(data.get("startDate")));
+    // const time = String(data.get("startTime"));
+    // const timeSplit = time.split(":");
+    // const hours = Number(timeSplit[0]);
+    // const minutes = Number(timeSplit[1]);
+    // const seconds = Number(timeSplit[2]);
+    // const timestamp = date.getTime() / 1000 + hours * 3600 + minutes * 60 + seconds;
+    // const timestampHex = timestamp.toString(16);
+    // const timestampHexPadded = timestampHex.padStart(16, "0");
+    // const timestampHexPaddedReversed = timestampHexPadded.match(/.{2}/g)?.reverse().join("");
+    // const timestampHexPaddedReversedWithPrefix = "4000000000000000" + timestampHexPaddedReversed;
+    // const timestampHexPaddedReversedWithPrefixBN = bn(timestampHexPaddedReversedWithPrefix);
    
+
+    // 4611686020097040401
+
+    // 4611686020097058000
+
+
     const poolId = await contract.functions
       .create_pool(
         isStaking,
         String(data.get("poolName")),
         new BN(Number(data.get("apy"))),
         qrtPayout,
-        new BN(Number(TAI64.fromUnix(Number(data.get("duration"))))),
-        new BN(Number(TAI64.fromUnix(Number(data.get("startTime"))))),
-        new BN(Number(TAI64.fromUnix(Number(data.get("endTime"))))),
+        new BN(Number(data.get("duration"))),
+        new BN(Number(data.get("startTime"))),
+        new BN(Number(data.get("endTime"))),
         new BN(Number(data.get("maxUtilization"))),
         bn.parseUnits(String(data.get("capacity"))),
         new BN(Number(data.get("limitPerPerson")))
@@ -142,7 +161,7 @@ function App() {
   async function poolDetails() {
     const value1 = await contract.functions.get_pool_info_from_id(0).get();
     const { value } = value1;
-    console.log(Number(value.depositLimiters.startTime));
+    console.log(Number(value.funds.balance));
   }
 
   async function userDetails() {
@@ -176,7 +195,11 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(TAI64.fromUnix(1669583740844).toString())
+    const today: any = String(new Date())
+    console.log(today)
+   console.log(Number(TAI64.fromUnix(
+   today / 1000)
+  ))
     allPools();
     checkBal();
     poolDetails();
@@ -270,16 +293,20 @@ function App() {
               placeholder="duration"
               className="App-inputs"
             ></input>
-            <input
-              name="startTime"
+           
+
+<input       name="startTime"
               placeholder="startTime"
               className="App-inputs"
             ></input>
-            <input
+
+       
+<input
               name="endTime"
               placeholder="endTime"
               className="App-inputs"
             ></input>
+
             <input
               name="maxUtilization"
               placeholder="Max Utilization"
