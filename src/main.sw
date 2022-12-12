@@ -225,9 +225,8 @@ impl AcumenCore for Contract {
     #[storage(read, write)]
     fn deposit(pool_id: u64, amount: u64) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
-        let sender: Identity = msg_sender().unwrap();
-        let tuple: (Identity, u64) = (sender, pool_id);
 
+  
         // require(amount <= pool.depositLimiters.limitPerUser, InteractionErrors::AmountExceedsAllowedDeposit);
         // require(pool.funds.balance + amount <= pool.depositLimiters.capacity, InteractionErrors::PoolisAtCapacity);
         // require(!pool.paused, InteractionErrors::PoolisPaused);
@@ -261,7 +260,7 @@ impl AcumenCore for Contract {
         // let entry_check = checkEntry(x);
         // if (entry_check == 0)
         // {
-        storage.userInfoPerPool.insert((tuple), new_transact);
+        storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), new_transact);
 
 
         // };
@@ -288,7 +287,7 @@ impl AcumenCore for Contract {
         pool.funds.balance = pool.funds.balance + amount;
         storage.allPools.set(pool_id, pool);
 
-        storage.totalDeposits.insert(sender, amount);
+        storage.totalDeposits.insert(msg_sender().unwrap(), amount);
 
         // log(DepositEvent {
         //     address: msg_sender().unwrap(),
