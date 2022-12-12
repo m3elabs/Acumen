@@ -83,9 +83,10 @@ abi AcumenCore {
     #[storage(read)]
     fn get_pool_info_from_id(pool_id: u64) -> PoolInfo;
     #[storage(read)]
-    fn get_user_stakes_info_per_pool(poolId: u64) -> Transaction;
+    fn get_user_stakes_info_per_pool(poolId: u64);
     #[storage(read)]
     fn get_total_stakes_of_user(poolId: u64) -> u64;
+    fn get_contract_id() -> ContractId;
 
 
 

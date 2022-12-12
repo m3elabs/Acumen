@@ -13,8 +13,6 @@ import type {
   BN,
 } from "fuels";
 
-import type { Enum, Option } from "./common";
-
 export type ContractIdInput = { value: string };
 
 export type ContractIdOutput = { value: string };
@@ -67,64 +65,6 @@ export type PoolInfoOutput = {
   depositLimiters: DepositLimitersOutput;
 };
 
-export type AddressInput = { value: string };
-
-export type AddressOutput = { value: string };
-
-export type StakingTransactionInput = {
-  balance: BigNumberish;
-  time: BigNumberish;
-  user: IdentityInput;
-  entries: BigNumberish;
-  poolUser: boolean;
-  withdrawTime: BigNumberish;
-  rewardsPaid: BigNumberish;
-};
-
-export type StakingTransactionOutput = {
-  balance: BN;
-  time: BN;
-  user: IdentityOutput;
-  entries: BN;
-  poolUser: boolean;
-  withdrawTime: BN;
-  rewardsPaid: BN;
-};
-
-export type BorrowingTransactionInput = {
-  balance: BigNumberish;
-  time: BigNumberish;
-  user: IdentityInput;
-  poolUser: boolean;
-};
-
-export type BorrowingTransactionOutput = {
-  balance: BN;
-  time: BN;
-  user: IdentityOutput;
-  poolUser: boolean;
-};
-
-export type TransactionInput = {
-  staking: StakingTransactionInput;
-  borrowing: BorrowingTransactionInput;
-};
-
-export type TransactionOutput = {
-  staking: StakingTransactionOutput;
-  borrowing: BorrowingTransactionOutput;
-};
-
-export type IdentityInput = Enum<{
-  Address: AddressInput;
-  ContractId: ContractIdInput;
-}>;
-
-export type IdentityOutput = Enum<{
-  Address: AddressOutput;
-  ContractId: ContractIdOutput;
-}>;
-
 interface AcumenAbiInterface extends Interface {
   functions: {
     borrow: FunctionFragment;
@@ -132,6 +72,7 @@ interface AcumenAbiInterface extends Interface {
     create_pool: FunctionFragment;
     deposit: FunctionFragment;
     edit_pool: FunctionFragment;
+    get_contract_id: FunctionFragment;
     get_pool_info_from_id: FunctionFragment;
     get_total_pools: FunctionFragment;
     get_total_stakes_of_user: FunctionFragment;
@@ -181,6 +122,10 @@ interface AcumenAbiInterface extends Interface {
     ]
   ): Uint8Array;
   encodeFunctionData(
+    functionFragment: "get_contract_id",
+    values?: undefined
+  ): Uint8Array;
+  encodeFunctionData(
     functionFragment: "get_pool_info_from_id",
     values: [BigNumberish]
   ): Uint8Array;
@@ -228,6 +173,10 @@ interface AcumenAbiInterface extends Interface {
   ): DecodedValue;
   decodeFunctionData(
     functionFragment: "edit_pool",
+    data: BytesLike
+  ): DecodedValue;
+  decodeFunctionData(
+    functionFragment: "get_contract_id",
     data: BytesLike
   ): DecodedValue;
   decodeFunctionData(
@@ -301,6 +250,8 @@ export class AcumenAbi extends Contract {
       void
     >;
 
+    get_contract_id: InvokeFunction<[], ContractIdOutput>;
+
     get_pool_info_from_id: InvokeFunction<
       [pool_id: BigNumberish],
       PoolInfoOutput
@@ -312,7 +263,7 @@ export class AcumenAbi extends Contract {
 
     get_user_stakes_info_per_pool: InvokeFunction<
       [pool_id: BigNumberish],
-      TransactionOutput
+      void
     >;
 
     repay: InvokeFunction<[pool_id: BigNumberish, amount: BigNumberish], void>;

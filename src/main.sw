@@ -29,13 +29,15 @@ use interface::{
 };
 
 use std::{
-    u256::U256,
     address::Address,
     auth::msg_sender,
     block::timestamp,
-    call_frames::{msg_asset_id, contract_id},
-    context:: msg_amount,
+    call_frames::{
+        contract_id,
+        msg_asset_id,
+    },
     constants::ZERO_B256,
+    context::msg_amount,
     contract_id::ContractId,
     identity::Identity,
     logging::log,
@@ -46,14 +48,14 @@ use std::{
         StorageVec,
     },
     token::*,
+    u256::U256,
 };
 
 const TEST_ETH: b256 = 0x0000000000000000000000000000000000000000000000000000000000000000;
-const BASE_TOKEN: ContractId = ContractId:: from(TEST_ETH);
+const BASE_TOKEN: ContractId = ContractId::from(TEST_ETH);
 
 const DAY: u64 = 86400;
 const MONTH: u64 = 2629743;
-
 
 storage {
     allPools: StorageVec<PoolInfo> = StorageVec {},
@@ -79,11 +81,10 @@ fn transfer_rewards(pool_id: u64, duration: u64, amount: u64) {
         claimable_reward = 0;
     }
 
-
     mint_to(claimable_reward, msg_sender().unwrap());
 
     user_info.staking.rewardsPaid = user_info.staking.rewardsPaid + claimable_reward;
-    
+
     storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
 
     // log(TransferredEvent {
@@ -123,11 +124,11 @@ fn calculate_interest(pool_id: u64, amount: u64) -> u64 {
 }
 
 fn calculate_percentage(whole: u64, percent: u64) -> u64 {
-  let zero: u64 = 0;
+    let zero: u64 = 0;
     if (percent == 0) {
         return 0
     };
-    let percentage = (U256::from((0,0,0,whole)) * U256::from((0,0,0,100)) /  U256::from((0,0,0,percent))).as_u64().unwrap();
+    let percentage = (U256::from((0, 0, 0, whole)) * U256::from((0, 0, 0, 100)) / U256::from((0, 0, 0, percent))).as_u64().unwrap();
     return percentage;
 }
 
@@ -157,10 +158,14 @@ fn emergency_withdraw(pool_id: u64, amount: u64) {
 
     // user_info.staking.withdrawTime = timestamp();
     // user_info.staking.balance = user_info.staking.balance - amount;
-
     // require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
+    let caller: Identity = msg_sender().unwrap();
+    let recepient: Address = match caller {
+        Identity::Address(address) => address,
+        _ => revert(0),
+    };
 
-    transfer(amount, pool.tokenInfo, msg_sender().unwrap());
+    transfer_to_address(amount, pool.tokenInfo, recepient);
 
     if (user_info.staking.balance == 0) {
         user_info.staking.poolUser = false;
@@ -184,14 +189,18 @@ impl AcumenCore for Contract {
         return storage.allPools.len();
     }
 
+    fn get_contract_id() -> ContractId {
+        return contract_id();
+    }
+
     #[storage(read)]
     fn get_pool_info_from_id(pool_id: u64) -> PoolInfo {
         return storage.allPools.get(pool_id).unwrap()
     }
 
     #[storage(read)]
-    fn get_user_stakes_info_per_pool(pool_id: u64) -> Transaction {
-         return storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
+    fn get_user_stakes_info_per_pool(pool_id: u64) {
+        let userInfo: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
     }
 
     #[storage(read)]
@@ -199,8 +208,6 @@ impl AcumenCore for Contract {
         let total_stakes: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
         return total_stakes.staking.entries;
     }
-
-
 
 // All Action Functions ------------->
  // #[storage(read, write)]
@@ -218,16 +225,18 @@ impl AcumenCore for Contract {
     #[storage(read, write)]
     fn deposit(pool_id: u64, amount: u64) {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
+        let sender: Identity = msg_sender().unwrap();
+        let tuple: (Identity, u64) = (sender, pool_id);
+
         // require(amount <= pool.depositLimiters.limitPerUser, InteractionErrors::AmountExceedsAllowedDeposit);
         // require(pool.funds.balance + amount <= pool.depositLimiters.capacity, InteractionErrors::PoolisAtCapacity);
         // require(!pool.paused, InteractionErrors::PoolisPaused);
-    
         let new_transact: Transaction = Transaction {
             staking: StakingTransaction {
                 balance: 0,
                 time: 0,
                 user: msg_sender().unwrap(),
-                entries: 0,
+                entries: 1,
                 poolUser: false,
                 withdrawTime: 0,
                 rewardsPaid: 0,
@@ -240,40 +249,46 @@ impl AcumenCore for Contract {
             },
         };
 
-        if (storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id)).staking.entries == 0) {
-            storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), new_transact);
-        };
+        // let x:Result<u64,E> = storage.userInfoPerPool.get((tuple))
+        
+        // fn checkEntry(result: Result<T,E>) -> u64 {
+        //   let check = x.unwrap();
+        //   match check {
+        //     check::Err(1) => 0,
+        //     check::Ok(val) => val,
+        //   }
+        // }
+        // let entry_check = checkEntry(x);
+        // if (entry_check == 0)
+        // {
+        storage.userInfoPerPool.insert((tuple), new_transact);
 
-        let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
-        user_info.staking.balance = user_info.staking.balance + amount;
-        user_info.staking.time = timestamp();
-        user_info.staking.user = msg_sender().unwrap();
-        user_info.staking.entries = user_info.staking.entries + 1;
-
-        if (user_info.staking.poolUser == false) {
-            pool.uniqueUsers = pool.uniqueUsers + 1;
-            user_info.staking.poolUser = true;
-        }
-
-        storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
-
+        // };
+        // let mut user_info: Transaction = storage.userInfoPerPool.get((tuple));
+        // user_info.staking.balance = user_info.staking.balance + amount;
+        // user_info.staking.time = timestamp();
+        // user_info.staking.user = sender;
+        // user_info.staking.entries = user_info.staking.entries + 1;
+        // if (user_info.staking.poolUser == false) {
+        //     pool.uniqueUsers = pool.uniqueUsers + 1;
+        //     user_info.staking.poolUser = true;
+        // }
+          
+        // if (entry_check > 0)
+        // {
+        // storage.userInfoPerPool.insert((tuple), user_info);
+        // };
       // Doesnt like condition below 
-
-
         // if (pool.poolTypeIsStaking == true) {
         //     require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
         // };
-
-       
         force_transfer_to_contract(amount, pool.tokenInfo, contract_id());
-
-        
 
         pool.funds.balance = pool.funds.balance + amount;
         storage.allPools.set(pool_id, pool);
 
-        storage.totalDeposits.insert(msg_sender().unwrap(), amount);
+        storage.totalDeposits.insert(sender, amount);
 
         // log(DepositEvent {
         //     address: msg_sender().unwrap(),
@@ -288,8 +303,8 @@ impl AcumenCore for Contract {
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
         if (timestamp() < pool.depositLimiters.endTime) {
-           emergency_withdraw(pool_id, amount);
-           return;
+            emergency_withdraw(pool_id, amount);
+            return;
         }
 
         require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
@@ -309,7 +324,6 @@ impl AcumenCore for Contract {
         }
 
         pool.funds.balance = pool.funds.balance - amount;
-
         let fetch_deposits: u64 = storage.totalDeposits.get(msg_sender().unwrap());
         storage.totalDeposits.insert(msg_sender().unwrap(), fetch_deposits - amount);
         storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
@@ -352,7 +366,6 @@ impl AcumenCore for Contract {
         storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
         storage.allPools.set(pool_id, pool);
 
-
         log(BorrowedEvent {
             address: msg_sender().unwrap(),
             poolId: pool_id,
@@ -380,14 +393,13 @@ impl AcumenCore for Contract {
         if (user_info.borrowing.balance == 0) {
             user_info.borrowing.poolUser = false;
         };
-         pool.funds.loanedBalance = pool.funds.loanedBalance - amount;
+        pool.funds.loanedBalance = pool.funds.loanedBalance - amount;
 
         let fetch_loans: u64 = storage.totalLoans.get(msg_sender().unwrap());
         storage.totalLoans.insert(msg_sender().unwrap(), fetch_loans - amount);
 
         storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
         storage.allPools.set(pool_id, pool);
-
 
         log(RepaidEvent {
             address: msg_sender().unwrap(),
@@ -414,7 +426,6 @@ impl AcumenCore for Contract {
 
         require(qrts_passed > 0, InteractionErrors::ClaimsNotAllowedRightNow);
         transfer_rewards(pool_id, (qrts_passed * (3 * MONTH)), claim_amount);
-
     }
 
     #[storage(write)]
