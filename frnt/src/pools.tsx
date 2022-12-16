@@ -19,12 +19,21 @@ const Pools = () => {
 
   const [poolInfo, setPoolInfo] = useState({} as PoolInfoOutput);
 
+  const [apy, setApy] = useState("");
+
+  const [maxUtilization, setMaxUtilization] = useState("");
+
+
   async function poolDetails() {
     const value1 = await contract.functions
       .get_pool_info_from_id(Number(id))
       .get();
     const { value } = value1;
     setPoolInfo(value);
+
+    //TODO: Figure out why I have to do this. Shouldn't be necessary.
+    setApy(value.apy.toString());
+    setMaxUtilization(value.depositLimiters.maxUtilization.toString());
   }
 
   const [value, setValue] = useState(0);
@@ -39,19 +48,11 @@ const Pools = () => {
     setValue2(event.target.value);
   };
 
-  const [apy, setApy] = useState("");
-
-  async function apyDetails() {
-    const value1 = await contract.functions
-      .get_pool_info_from_id(Number(id))
-      .get();
-    const { value } = value1;
-    setApy(value.apy.toString());
-  }
+  
 
   useEffect(() => {
     poolDetails();
-    apyDetails();
+    getDetails();
   }, []);
   //TODO add repay and borrow details.
   if (poolInfo.poolTypeIsStaking) {
@@ -87,6 +88,7 @@ const Pools = () => {
           <h2>Pool Name: {poolInfo.poolName}</h2>
           <h2>Pool Type: {poolInfo.poolTypeIsStaking ? "Staking" : "Loan"}</h2>
           <h2>Pool Interest: {apy}%</h2>
+          <h2>Pool Max Utilization: {maxUtilization}%</h2>
         </div>
         <div className="App-items">
           <input type="number" value={value} onChange={handleChange} />
