@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AcumenAbi__factory } from "./contracts";
-import { CONTRACT_ID, deposit, depositTransaction, wallet1, withdrawTransaction } from "./utils";
+import {
+  borrowTransaction,
+  CONTRACT_ID,
+  deposit,
+  depositTransaction,
+  repayTransaction,
+  wallet1,
+  withdrawTransaction,
+} from "./utils";
 import { PoolInfoOutput } from "./contracts/AcumenAbi";
 
 const Pools = () => {
@@ -45,30 +53,56 @@ const Pools = () => {
     poolDetails();
     apyDetails();
   }, []);
-
-  return (
-    <>
-      <div>
-        <h1>Pool Details</h1>
-        <h2>Pool ID: {id}</h2>
-        <h2>Pool Name: {poolInfo.poolName}</h2>
-        <h2>Pool Type: {poolInfo.poolTypeIsStaking ? "Staking" : "Loan"}</h2>
-        <h2>Pool Interest: {apy}%</h2>
-      </div>
-      <div className="App-items">
-        <input type="number" value={value} onChange={handleChange} />
-        <button onClick={() => depositTransaction(value, Number(id))}>
-          Deposit
-        </button>
-      </div>
-      <div className="App-items">
-        <input type="number" value={value2} onChange={handleChange2} />
-        <button onClick={() => withdrawTransaction(value2, Number(id))}>
-          Withdraw
-        </button>
-      </div>
-    </>
-  );
+  //TODO add repay and borrow details.
+  if (poolInfo.poolTypeIsStaking) {
+    return (
+      <>
+        <div>
+          <h1>Pool Details</h1>
+          <h2>Pool ID: {id}</h2>
+          <h2>Pool Name: {poolInfo.poolName}</h2>
+          <h2>Pool Type: {poolInfo.poolTypeIsStaking ? "Staking" : "Loan"}</h2>
+          <h2>Pool Interest: {apy}%</h2>
+        </div>
+        <div className="App-items">
+          <input type="number" value={value} onChange={handleChange} />
+          <button onClick={() => depositTransaction(value, Number(id))}>
+            Deposit
+          </button>
+        </div>
+        <div className="App-items">
+          <input type="number" value={value2} onChange={handleChange2} />
+          <button onClick={() => withdrawTransaction(value2, Number(id))}>
+            Withdraw
+          </button>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div>
+          <h1>Pool Details</h1>
+          <h2>Pool ID: {id}</h2>
+          <h2>Pool Name: {poolInfo.poolName}</h2>
+          <h2>Pool Type: {poolInfo.poolTypeIsStaking ? "Staking" : "Loan"}</h2>
+          <h2>Pool Interest: {apy}%</h2>
+        </div>
+        <div className="App-items">
+          <input type="number" value={value} onChange={handleChange} />
+          <button onClick={() => borrowTransaction(value, Number(id))}>
+            Borrow
+          </button>
+        </div>
+        <div className="App-items">
+          <input type="number" value={value2} onChange={handleChange2} />
+          <button onClick={() => repayTransaction(value2, Number(id))}>
+            Repay
+          </button>
+        </div>
+      </>
+    );
+  }
 };
 
 export default Pools;

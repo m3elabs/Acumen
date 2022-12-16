@@ -69,6 +69,26 @@ export async function withdrawTransaction(amount: any, pool_id: any) {
   console.log("transaction", withdraw);
 }
 
+//TODO: Check if this is correct
+export async function borrowTransaction(amount: any, pool_id: any) {
+  const withdraw = await contract.functions
+    .borrow(bn(pool_id), bn(amount))
+    .txParams({ gasPrice: 1 })
+    .call();
+
+  console.log("transaction", withdraw);
+}
+
+//TODO: Check if this is correct
+export async function repayTransaction(amount: any, pool_id: any) {
+  const withdraw = await contract.functions
+    .repay(bn(pool_id), bn(amount))
+    .txParams({ gasPrice: 1 })
+    .call();
+
+  console.log("transaction", withdraw);
+}
+
 // function to borrow funds
 export async function borrow(e: any) {
   e.preventDefault();
