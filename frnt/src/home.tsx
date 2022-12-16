@@ -96,16 +96,18 @@ function Home() {
           <th>Open</th>
         </tr>
         {stakingPoolData.map((pool) => (
-          <Link to={`pools/${pool.pool_id.toString()}`}>
-            <tr>
-              <td>{pool.pool_id.toString()}</td>
-              <td>{pool.poolName}</td>
-              <td>{pool.apy.toString()}</td>
-              <td>{pool.depositLimiters.capacity.toString()}</td>
-              <td>{pool.funds.balance.toString()}</td>
-              <td>{isOpenStaking(pool.depositLimiters.endTime)}</td>
-            </tr>
-          </Link>
+          <p>
+            <Link to={`pools/${pool.pool_id.toString()}`}>
+              <tr>
+                <td>{pool.pool_id.toString()}</td>
+                <td>{pool.poolName}</td>
+                <td>{pool.apy.toString()}</td>
+                <td>{pool.depositLimiters.capacity.toString()}</td>
+                <td>{pool.funds.balance.toString()}</td>
+                <td>{isOpenStaking(pool.depositLimiters.endTime)}</td>
+              </tr>
+            </Link>
+          </p>
         ))}
       </table>
 
@@ -121,16 +123,19 @@ function Home() {
           <th>Deposits</th>
         </tr>
         {loanPoolData.map((pool) => (
-          <Link to={`pools/${pool.pool_id.toString()}`}>
-          <tr>
-            <td>{pool.pool_id.toString()}</td>
-            <td>{pool.poolName}</td>
-            <td>{pool.apy.toString()}</td>
-            <td>{pool.depositLimiters.capacity.toString()}</td>
-            <td>{pool.funds.loanedBalance.toString()}</td>
-            <td>{pool.funds.balance.toString()}</td>
-          </tr>
-          </Link>
+          //TODO: Fix this... Why are the pool IDs off by 1?
+          <p>
+            <Link to={`pools/${(Number(pool.pool_id) - 1).toString()}`}>
+              <tr>
+                <td>{pool.pool_id.toString()}</td>
+                <td>{pool.poolName}</td>
+                <td>{pool.apy.toString()}</td>
+                <td>{pool.depositLimiters.capacity.toString()}</td>
+                <td>{pool.funds.loanedBalance.toString()}</td>
+                <td>{pool.funds.balance.toString()}</td>
+              </tr>
+            </Link>
+          </p>
         ))}
       </table>
       <header className="App-header">

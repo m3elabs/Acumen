@@ -23,6 +23,7 @@ const Pools = () => {
 
   const [maxUtilization, setMaxUtilization] = useState("");
 
+  const [realPoolId, setRealPoolId] = useState('');
 
   async function poolDetails() {
     const value1 = await contract.functions
@@ -34,6 +35,7 @@ const Pools = () => {
     //TODO: Figure out why I have to do this. Shouldn't be necessary.
     setApy(value.apy.toString());
     setMaxUtilization(value.depositLimiters.maxUtilization.toString());
+    setRealPoolId(value.pool_id.toString());
   }
 
   const [value, setValue] = useState(0);
@@ -60,6 +62,7 @@ const Pools = () => {
         <div>
           <h1>Pool Details</h1>
           <h2>Pool ID: {id}</h2>
+          <h2>Real ID: {realPoolId}</h2>
           <h2>Pool Name: {poolInfo.poolName}</h2>
           <h2>Pool Type: {poolInfo.poolTypeIsStaking ? "Staking" : "Loan"}</h2>
           <h2>Pool Interest: {apy}%</h2>
@@ -84,6 +87,7 @@ const Pools = () => {
         <div>
           <h1>Pool Details</h1>
           <h2>Pool ID: {id}</h2>
+          <h2>Real ID: {realPoolId}</h2>
           <h2>Pool Name: {poolInfo.poolName}</h2>
           <h2>Pool Type: {poolInfo.poolTypeIsStaking ? "Staking" : "Loan"}</h2>
           <h2>Pool Interest: {apy}%</h2>
