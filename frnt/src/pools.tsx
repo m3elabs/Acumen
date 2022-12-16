@@ -52,7 +52,6 @@ const Pools = () => {
 
   useEffect(() => {
     poolDetails();
-    getDetails();
   }, []);
   //TODO add repay and borrow details.
   if (poolInfo.poolTypeIsStaking) {
