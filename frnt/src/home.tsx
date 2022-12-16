@@ -21,7 +21,6 @@ import {
 } from "./utils";
 
 function Home() {
-  
   const [pools, setPools] = useState(0);
 
   async function poolDetails() {
@@ -122,6 +121,7 @@ function Home() {
           <th>Deposits</th>
         </tr>
         {loanPoolData.map((pool, index) => (
+          <Link to={`pools/${index}`}>
           <tr>
             <td>{pool.pool_id.toString()}</td>
             <td>{pool.poolName}</td>
@@ -130,6 +130,7 @@ function Home() {
             <td>{pool.funds.loanedBalance.toString()}</td>
             <td>{pool.funds.balance.toString()}</td>
           </tr>
+          </Link>
         ))}
       </table>
       <header className="App-header">
