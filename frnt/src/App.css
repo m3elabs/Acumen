@@ -37,11 +37,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.Pools {
+  width: 100%;
+  border: #282c34 1px solid;
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: grey;
 }
 
 @keyframes App-logo-spin {
