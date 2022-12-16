@@ -230,7 +230,6 @@ function App() {
     }
   }
 
-
   useEffect(() => {
     // checkId()
     // allPools();
