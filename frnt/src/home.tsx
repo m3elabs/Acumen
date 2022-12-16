@@ -95,8 +95,8 @@ function Home() {
           <th>Deposits</th>
           <th>Open</th>
         </tr>
-        {stakingPoolData.map((pool, index) => (
-          <Link to={`pools/${index}`}>
+        {stakingPoolData.map((pool) => (
+          <Link to={`pools/${pool.pool_id.toString()}`}>
             <tr>
               <td>{pool.pool_id.toString()}</td>
               <td>{pool.poolName}</td>
@@ -120,8 +120,8 @@ function Home() {
           <th>Loaned</th>
           <th>Deposits</th>
         </tr>
-        {loanPoolData.map((pool, index) => (
-          <Link to={`pools/${index}`}>
+        {loanPoolData.map((pool) => (
+          <Link to={`pools/${pool.pool_id.toString()}`}>
           <tr>
             <td>{pool.pool_id.toString()}</td>
             <td>{pool.poolName}</td>
