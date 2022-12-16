@@ -158,7 +158,8 @@ function App() {
     console.log(value1);
   }
 
-  const [poolData, setPoolData] = useState<PoolInfoInput[]>([]);
+  const [loanPoolData, setLoanPoolData] = useState<PoolInfoInput[]>([]);
+  const [stakingPoolData, setStakingPoolData] = useState<PoolInfoInput[]>([]);
 
   async function allPoolDetails() {
     const { value } = await contract.functions.get_total_pools().get();
@@ -171,7 +172,14 @@ function App() {
 
       const poolInfoInput: PoolInfoInput = value;
 
-      setPoolData((poolData) => [...poolData, poolInfoInput]);
+      if (poolInfoInput.poolTypeIsStaking) {
+        setStakingPoolData((stakingPoolData) => [
+          ...stakingPoolData,
+          poolInfoInput,
+        ]);
+      } else {
+        setLoanPoolData((loanPoolData) => [...loanPoolData, poolInfoInput]);
+      }
     }
   }
 
@@ -210,7 +218,7 @@ function App() {
     console.log(id);
   };
 
-  function isOpen(endDate: BigNumberish) {
+  function isOpenStaking(endDate: BigNumberish) {
     const today = Math.floor(Date.now() / 1000);
     const date = Number(endDate) - 4611686018427387914;
 
@@ -221,6 +229,7 @@ function App() {
       return "Open";
     }
   }
+
 
   useEffect(() => {
     // checkId()
@@ -233,23 +242,48 @@ function App() {
 
   return (
     <div className="App">
+      <h4>Staking Pools</h4>
+
       <table className="Pools">
         <tr>
           <th>Pool ID</th>
           <th>Pool Name</th>
           <th>APY</th>
           <th>Capacity</th>
-          <th>balance</th>
+          <th>Deposits</th>
           <th>Open</th>
         </tr>
-        {poolData.map((pool, index) => (
+        {stakingPoolData.map((pool, index) => (
           <tr>
             <td>{pool.pool_id.toString()}</td>
             <td>{pool.poolName}</td>
             <td>{pool.apy.toString()}</td>
             <td>{pool.depositLimiters.capacity.toString()}</td>
             <td>{pool.funds.balance.toString()}</td>
-            <td>{isOpen(pool.depositLimiters.endTime)}</td>
+            <td>{isOpenStaking(pool.depositLimiters.endTime)}</td>
+          </tr>
+        ))}
+      </table>
+
+      <h4>Loan Pools</h4>
+
+      <table className="Pools">
+        <tr>
+          <th>Pool ID</th>
+          <th>Pool Name</th>
+          <th>APY</th>
+          <th>Capacity</th>
+          <th>Loaned</th>
+          <th>Deposits</th>
+        </tr>
+        {loanPoolData.map((pool, index) => (
+          <tr>
+            <td>{pool.pool_id.toString()}</td>
+            <td>{pool.poolName}</td>
+            <td>{pool.apy.toString()}</td>
+            <td>{pool.depositLimiters.capacity.toString()}</td>
+            <td>{pool.funds.loanedBalance.toString()}</td>
+            <td>{pool.funds.balance.toString()}</td>
           </tr>
         ))}
       </table>
