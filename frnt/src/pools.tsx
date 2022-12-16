@@ -25,6 +25,12 @@ const Pools = () => {
     setValue(event.target.value);
   };
 
+  const [value2, setValue2] = useState(0);
+
+  const handleChange2 = (event: any) => {
+    setValue2(event.target.value);
+  };
+
   const [apy, setApy] = useState("");
 
   async function apyDetails() {
@@ -56,8 +62,8 @@ const Pools = () => {
         </button>
       </div>
       <div className="App-items">
-        <input type="number" value={value} onChange={handleChange} />
-        <button onClick={() => withdrawTransaction(value, Number(id))}>
+        <input type="number" value={value2} onChange={handleChange2} />
+        <button onClick={() => withdrawTransaction(value2, Number(id))}>
           Withdraw
         </button>
       </div>

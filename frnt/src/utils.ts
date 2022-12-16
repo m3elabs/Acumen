@@ -64,7 +64,6 @@ export async function withdrawTransaction(amount: any, pool_id: any) {
   const withdraw = await contract.functions
     .withdraw(bn(pool_id), bn(amount))
     .txParams({ gasPrice: 1 })
-    .callParams({ forward: [bn(amount), address] })
     .call();
 
   console.log("transaction", withdraw);
