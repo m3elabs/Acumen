@@ -1,5 +1,6 @@
 import { BN, bn, Wallet } from "fuels";
 import { useEffect, useState } from "react";
+import { TAI64 } from "tai64";
 import { AcumenAbi__factory } from "./contracts";
 
 // The ID of the contract deployed to our local node.
@@ -170,6 +171,15 @@ export const checkId = async () => {
   console.log(id);
 };
 
+//create a function to convert unix time to TAI64
+export function unixToTai64(unixTime: number) {
+  const value = TAI64.fromUnix(unixTime);
+  const valueString = value.toString();
+  const valueDecimal = parseInt(valueString, 16);
+  return valueDecimal;
+
+}
+
 //function used to create a new pool
 export async function createPool(e: any) {
   e.preventDefault();
@@ -206,4 +216,5 @@ export async function createPool(e: any) {
     .call();
 
   console.log("Sent to the chain", poolId);
+  
 }

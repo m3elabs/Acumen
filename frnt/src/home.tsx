@@ -16,6 +16,7 @@ import {
   createPool,
   deposit,
   editPool,
+  unixToTai64,
   wallet1,
   withdraw,
 } from "./utils";
@@ -63,11 +64,15 @@ function Home() {
   }
 
   function isOpenStaking(endDate: BigNumberish) {
-    const today = Math.floor(Date.now() / 1000);
-    const date = Number(endDate) - 4611686018427387914;
+    //get today's date in tai64
+    const today = TAI64.now();
+    //convert today to string
+    const todayString = today.toString();
+    //convert todayString to decimal from hex
+    const todayDecimal = parseInt(todayString, 16);
 
-    console.log(today, date);
-    if (today > date) {
+    console.log(todayDecimal, endDate);
+    if (todayDecimal > endDate) {
       return "Closed";
     } else {
       return "Open";
