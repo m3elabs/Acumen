@@ -159,7 +159,7 @@ fn emergency_withdraw(pool_id: u64, amount: u64) {
     user_info.staking.withdrawTime = timestamp();
     user_info.staking.balance = user_info.staking.balance - amount;
     require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
-    
+
     let caller: Identity = msg_sender().unwrap();
     let recepient: Address = match caller {
         Identity::Address(address) => address,
@@ -441,9 +441,6 @@ impl AcumenCore for Contract {
         } else {
             id = storage.allPools.len() + 1;
         }
-        if (pool_is_staking == true) {
-            require(start_time + 4611686018427387914 < end_time + 4611686018427387914, InteractionErrors::TimesIncompatible)
-        };
 
         let new_pool: PoolInfo = PoolInfo {
             poolName: pool_name,
@@ -460,8 +457,8 @@ impl AcumenCore for Contract {
             pool_id: id,
             depositLimiters: DepositLimiters {
                 duration: duration,
-                startTime: start_time + 4611686018427387914,
-                endTime: start_time + 4611686018427387914,
+                startTime: start_time,
+                endTime: end_time,
                 limitPerUser: limit_per_user,
                 capacity: capacity,
                 maxUtilization: max_utilization,

@@ -31,11 +31,11 @@ function Home() {
   }
 
   async function userDetails() {
-    const value1 = await contract.functions
+    const { value } = await contract.functions
       .get_user_stakes_info_per_pool(bn("0"))
-      .get();
-    //  const {value} = value1;
-    console.log(value1);
+      .txParams({ gasPrice: 1 })
+      .call();
+    console.log(value);
   }
 
   const [loanPoolData, setLoanPoolData] = useState<PoolInfoOutput[]>([]);
