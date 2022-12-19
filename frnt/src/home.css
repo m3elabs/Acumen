@@ -37,12 +37,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 .App-link {
   color: #61dafb;
 }
+
+.Pools {
+  width:100%;
+  border:1px solid #b3adad;
+  border-collapse:collapse;
+  padding:5px;
+}
+.Pools th {
+  border:1px solid #b3adad;
+  padding:5px;
+  background: #f0f0f0;
+  color: #313030;
+}
+.Pools td {
+  border:1px solid #b3adad;
+  text-align:center;
+  padding:5px;
+  background: #ffffff;
+  color: #313030;
+}
+
+
 
 @keyframes App-logo-spin {
   from {
