@@ -17,7 +17,7 @@ const WALLET_SECRET =
 // E.g. Contract id: 0xa326e3472fd4abc417ba43e369f59ea44f8325d42ba6cf71ec4b58123fd8668a
 // const CONTRACT_ID = "0xa326e3472fd4abc417ba43e369f59ea44f8325d42ba6cf71ec4b58123fd8668a"
 const CONTRACT_ID =
-  "0xaad4b57777fb4b60725efd4000fd2c06fdda4f2bbcca8ad218ff39e84137c79e";
+  "0x110ab6f1bbe3836dba728fc6eb6aa3f63c6fd8798e6476e2b50b27d80e33bb5d";
 
 // Create a "Wallet" using the private key above.
 const wallet1 = Wallet.fromPrivateKey(
@@ -150,17 +150,22 @@ function App() {
   }
 
   async function poolDetails() {
-    const value1 = await contract.functions.get_pool_info_from_id(0).get();
+    const value1 = await contract.functions.get_pool_info_from_id(1).get();
     const { value } = value1;
-    console.log(value);
+    console.log(Number(value.depositLimiters.endTime));
   }
 
+  // 4611686020098687000
+  // 4611686020098701417
+
+
   async function userDetails() {
-    const value1 = await contract.functions
-      .get_user_stakes_info_per_pool(bn("0"))
-      .get();
+    const {value} = await contract.functions
+      .get_user_stakes_info_per_pool(4)
+      .txParams({ gasPrice: 1 })
+      .call();
     //  const {value} = value1;
-    console.log(value1);
+    console.log(Number(value.staking.entries));
   }
 
   async function totalDeposits() {
@@ -202,7 +207,7 @@ function App() {
     // checkId()
     allPools();
     userDetails();
-    //poolDetails();
+    poolDetails();
     // totalDeposits();
   }, []);
 

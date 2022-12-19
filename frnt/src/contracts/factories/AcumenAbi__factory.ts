@@ -309,9 +309,110 @@ const _abi = [
     ],
     outputs: [
       {
-        type: "()",
+        type: "struct Transaction",
         name: "",
-        components: [],
+        components: [
+          {
+            type: "struct StakingTransaction",
+            name: "staking",
+            components: [
+              {
+                type: "u64",
+                name: "balance",
+              },
+              {
+                type: "u64",
+                name: "time",
+              },
+              {
+                type: "enum Identity",
+                name: "user",
+                components: [
+                  {
+                    type: "struct Address",
+                    name: "Address",
+                    components: [
+                      {
+                        type: "b256",
+                        name: "value",
+                      },
+                    ],
+                  },
+                  {
+                    type: "struct ContractId",
+                    name: "ContractId",
+                    components: [
+                      {
+                        type: "b256",
+                        name: "value",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: "u64",
+                name: "entries",
+              },
+              {
+                type: "bool",
+                name: "poolUser",
+              },
+              {
+                type: "u64",
+                name: "withdrawTime",
+              },
+              {
+                type: "u64",
+                name: "rewardsPaid",
+              },
+            ],
+          },
+          {
+            type: "struct BorrowingTransaction",
+            name: "borrowing",
+            components: [
+              {
+                type: "u64",
+                name: "balance",
+              },
+              {
+                type: "u64",
+                name: "time",
+              },
+              {
+                type: "enum Identity",
+                name: "user",
+                components: [
+                  {
+                    type: "struct Address",
+                    name: "Address",
+                    components: [
+                      {
+                        type: "b256",
+                        name: "value",
+                      },
+                    ],
+                  },
+                  {
+                    type: "struct ContractId",
+                    name: "ContractId",
+                    components: [
+                      {
+                        type: "b256",
+                        name: "value",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: "bool",
+                name: "poolUser",
+              },
+            ],
+          },
+        ],
       },
     ],
   },

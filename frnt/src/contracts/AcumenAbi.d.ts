@@ -13,6 +13,8 @@ import type {
   BN,
 } from "fuels";
 
+import type { Enum, Option } from "./common";
+
 export type ContractIdInput = { value: string };
 
 export type ContractIdOutput = { value: string };
@@ -64,6 +66,64 @@ export type PoolInfoOutput = {
   pool_id: BN;
   depositLimiters: DepositLimitersOutput;
 };
+
+export type AddressInput = { value: string };
+
+export type AddressOutput = { value: string };
+
+export type StakingTransactionInput = {
+  balance: BigNumberish;
+  time: BigNumberish;
+  user: IdentityInput;
+  entries: BigNumberish;
+  poolUser: boolean;
+  withdrawTime: BigNumberish;
+  rewardsPaid: BigNumberish;
+};
+
+export type StakingTransactionOutput = {
+  balance: BN;
+  time: BN;
+  user: IdentityOutput;
+  entries: BN;
+  poolUser: boolean;
+  withdrawTime: BN;
+  rewardsPaid: BN;
+};
+
+export type BorrowingTransactionInput = {
+  balance: BigNumberish;
+  time: BigNumberish;
+  user: IdentityInput;
+  poolUser: boolean;
+};
+
+export type BorrowingTransactionOutput = {
+  balance: BN;
+  time: BN;
+  user: IdentityOutput;
+  poolUser: boolean;
+};
+
+export type TransactionInput = {
+  staking: StakingTransactionInput;
+  borrowing: BorrowingTransactionInput;
+};
+
+export type TransactionOutput = {
+  staking: StakingTransactionOutput;
+  borrowing: BorrowingTransactionOutput;
+};
+
+export type IdentityInput = Enum<{
+  Address: AddressInput;
+  ContractId: ContractIdInput;
+}>;
+
+export type IdentityOutput = Enum<{
+  Address: AddressOutput;
+  ContractId: ContractIdOutput;
+}>;
 
 interface AcumenAbiInterface extends Interface {
   functions: {
@@ -263,7 +323,7 @@ export class AcumenAbi extends Contract {
 
     get_user_stakes_info_per_pool: InvokeFunction<
       [pool_id: BigNumberish],
-      void
+      TransactionOutput
     >;
 
     repay: InvokeFunction<[pool_id: BigNumberish, amount: BigNumberish], void>;

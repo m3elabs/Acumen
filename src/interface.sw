@@ -5,8 +5,8 @@ use std::{
     auth::msg_sender,
     block::timestamp,
     call_frames::msg_asset_id,
-    context::msg_amount,
     constants::ZERO_B256,
+    context::msg_amount,
     contract_id::ContractId,
     identity::Identity,
     logging::log,
@@ -74,8 +74,6 @@ pub struct Whitelist {
     pool_id: u64,
 }
 
-
-
 abi AcumenCore {
 // All Read Functions ------------->
     #[storage(read)]
@@ -83,12 +81,10 @@ abi AcumenCore {
     #[storage(read)]
     fn get_pool_info_from_id(pool_id: u64) -> PoolInfo;
     #[storage(read)]
-    fn get_user_stakes_info_per_pool(poolId: u64);
+    fn get_user_stakes_info_per_pool(poolId: u64) -> Transaction;
     #[storage(read)]
     fn get_total_stakes_of_user(poolId: u64) -> u64;
     fn get_contract_id() -> ContractId;
-
-
 
 // All Action Functions ------------->
     // #[storage(write)]
