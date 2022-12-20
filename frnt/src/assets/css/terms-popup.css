@@ -1,0 +1,135 @@
+/* Fonts start */
+
+
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("assets/font/ProximaNova-Regular.ttf") format("TrueType"),
+        url("assets/font/ProximaNova-Regular.woff") format("woff");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("assets/font/ProximaNova-Semibold.ttf") format("TrueType"),
+        url("assets/font/ProximaNova-Semibold.woff") format("woff");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("assets/font/ProximaNova-Bold.ttf") format("TrueType"),
+        url("assets/font/ProximaNova-Bold.woff") format("woff");
+    font-weight: 700;
+}
+
+/* Fonts end */
+
+/* Root start */
+:root {
+    /* Font style */
+    --primary-font: 'Proxima Nova', sans-serif;
+    --black-color: #000000;
+    --white-color: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Root end */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: #08010E;
+    font-size: 16px;
+
+
+}
+
+ .terms-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: auto;
+    padding: 25px;
+    background: #fff;
+    opacity: 1;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+
+.div-border {
+    border-bottom: 1px solid #ccc;
+    height: 25px;
+}
+
+.dashboard {
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+    font-family: var(--primary-font);
+    font-size: 36px;
+    letter-spacing: 1px;
+}
+
+.terms-text{
+    height: 235px;
+    overflow: auto;
+}
+.terms-text p{
+    color: #666;
+    font-weight: 400;
+    font-family: var(--primary-font);
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+.cancel{
+    font-weight: 400;
+    font-family: var(--primary-font);
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+}
+.cancel:hover{
+    color:black;
+}
+.terms-btn-align{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.agree-btn {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(100deg, #5312ED, #7B1DF4, #AD2CFD);
+    border-radius: 10px;
+    font-weight: 400;
+    font-family: var(--primary-font);
+    font-size: 18px;
+    outline: none;
+    border: none;
+    margin-left: 20px;
+}
+
+.agree-btn:hover {
+    color: #fff;
+} 

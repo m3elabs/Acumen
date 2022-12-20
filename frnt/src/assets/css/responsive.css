@@ -1,0 +1,3063 @@
+@media (max-width:1440px) {
+    .header-world-img img {
+        width: 100%;
+    }
+
+    .last-section-blur-img img {
+        width: 100%;
+    }
+
+    .back-design-img img {
+        width: 100%;
+    }
+
+    .last-section-blur-img {
+        position: absolute;
+        top: -130px;
+        right: -40px;
+    }
+
+    .owl-carousel .owl-prev {
+        left: -55px;
+    }
+
+    .owl-carousel .owl-next {
+        right: -45px;
+    }
+
+    .home-hero-section {
+        padding: 150px 12px 100px 12px;
+    }
+
+    .header-text h1 {
+        font-size: 55px;
+    }
+
+    .header-text h2 {
+        font-size: 80px;
+    }
+
+    .header-text p {
+        font-size: 22px;
+        max-width: 860px;
+    }
+
+    .works-text h1 {
+        font-size: 55px;
+    }
+
+    .partner-text h1 {
+        font-size: 55px;
+    }
+
+    .partner-text p {
+        font-size: 22px;
+        max-width: 975px;
+    }
+
+    .subtract-rectangle {
+        width: 595px;
+    }
+
+    .small-rectangle-right {
+        right: 52px;
+    }
+
+    .partner-inner-text {
+        position: absolute;
+        top: 32px;
+        padding: 0 40px;
+    }
+
+    .partner-data {
+        grid-gap: 40px 0px;
+    }
+
+    .news-title h1 {
+        font-size: 55px;
+    }
+
+    .our-mission-text h1 {
+        font-size: 55px;
+    }
+
+    .our-mission-text h3 {
+        font-size: 30px;
+    }
+
+    .our-mission-text p {
+        font-size: 17px;
+    }
+
+    .row-margin {
+        margin-top: 110px;
+    }
+
+    .img-align img {
+        width: 85%;
+    }
+
+    .roadmap-btn {
+        padding: 12px 15px;
+        width: 125px;
+    }
+
+    .roadmap-praragraph p {
+        font-size: 18px;
+    }
+
+    .section-padding {
+        padding: 90px 0 110px 0;
+    }
+
+    .build-text h1 {
+        font-size: 55px;
+    }
+
+    .build-text p {
+        font-size: 22px;
+        padding-top: 0px;
+    }
+
+    .stable-text h1 {
+        font-size: 45px;
+    }
+
+    .stable-text p {
+        font-size: 22px;
+        padding-top: 10px;
+        line-height: 35px;
+    }
+
+    .pool-info-text h1 {
+        font-size: 45px;
+    }
+
+    .pools-text-inner h1 {
+        font-size: 45px;
+    }
+
+    .pools-text-inner p {
+        font-size: 22px;
+    }
+
+    .profile-text h1 {
+        font-size: 45px;
+        margin-bottom: 25px;
+    }
+
+    .profile-text h3 {
+        font-size: 22px;
+    }
+
+    .profile-span {
+        font-size: 22px;
+    }
+
+ 
+    .small-rectangle-right img {
+        width: 94px;
+    }
+    
+}
+
+@media (max-width:1366px) {
+
+    .second-rectangle-text p {
+        font-size: 20px;
+    }
+
+    .second-rectangle-text {
+        top: 60px;
+        padding: 0 35px;
+    }
+
+    .btn-right-margin {
+        margin-left: 205px;
+    }
+
+    .work-inner-bg {
+        background-color: #11041C;
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+    .subtract-rectangle {
+        width: 540px;
+    }
+
+    .small-rectangle-right img {
+        width: 85px;
+    }
+
+    .small-rectangle-right {
+        right: 18px;
+    }
+
+    .partner-inner-text {
+        position: absolute;
+        top: 25px;
+    }
+
+    .slider-inner-img h3 {
+        font-size: 20px;
+        line-height: 30px;
+        padding-top: 40px;
+    }
+
+    .slider-inner-img p {
+        font-size: 16px;
+        padding-top: 21px;
+        line-height: 30px;
+    }
+
+    .inner-slider-btn {
+        padding-top: 30px;
+    }
+
+
+    .header-btn-line {
+        margin-left: 90px;
+    }
+
+    .subtract img {
+        width: 345px;
+    }
+
+    .pool-info-inner-text span {
+        font-size: 27px;
+    }
+
+    .pool-info-inner-text p {
+        padding-top: 0px;
+        margin: 0;
+
+    }
+
+    .pool-info-inner-text {
+        position: absolute;
+        top: 20px;
+        text-align: center;
+        left: 85px;
+    }
+
+    .profile-subtract-img img {
+        width: 345px;
+    }
+
+    .profile-info-inner-text span {
+        letter-spacing: 1px;
+        font-size: 25px;
+    }
+
+    .profile-info-inner-text p {
+        padding-top: 0;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .profile-info-inner-text {
+        position: absolute;
+        top: 22px;
+        text-align: center;
+        left: 108px;
+    }
+    .faq-title h2 {
+        font-family: var(--primary-font);
+        font-size: 45px;
+    }
+    .pool-info-inner-text-2 p{
+        padding-top: 0px;
+        margin: 0;
+    }
+    .pool-info-inner-text-3 p{
+        padding-top: 0px;
+        margin: 0;
+    }
+
+}
+
+@media (max-width:1280px) {
+    .senior-pool-padding {
+        padding: 40px 0 90px 0;
+    }
+
+    .second-rectangle-text p {
+        font-size: 20px;
+    }
+
+    .second-rectangle-text {
+        top: 60px;
+        padding: 0 35px;
+    }
+
+    .btn-right-margin {
+        margin-left: 205px;
+    }
+
+    .work-inner-bg {
+        background-color: #11041C;
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+    .subtract-rectangle {
+        width: 540px;
+    }
+
+    .small-rectangle-right img {
+        width: 85px;
+    }
+
+    .small-rectangle-right {
+        right: 18px;
+    }
+
+    .partner-inner-text {
+        position: absolute;
+        top: 25px;
+    }
+
+    .slider-inner-img h3 {
+        font-size: 20px;
+        line-height: 30px;
+        padding-top: 40px;
+    }
+
+    .slider-inner-img p {
+        font-size: 16px;
+        padding-top: 21px;
+        line-height: 30px;
+    }
+
+    .inner-slider-btn {
+        padding-top: 30px;
+    }
+
+  
+    .header-btn-line {
+        margin-left: 90px;
+    }
+
+    .subtract img {
+        width: 345px;
+    }
+
+    .pool-info-inner-text span {
+        font-size: 27px;
+    }
+
+    .pool-info-inner-text p {
+        padding-top: 0px;
+        margin: 0;
+
+    }
+
+    .pool-info-inner-text {
+        position: absolute;
+        top: 20px;
+        text-align: center;
+        left: 85px;
+    }
+
+    .profile-subtract-img img {
+        width: 345px;
+    }
+
+    .profile-info-inner-text span {
+        letter-spacing: 1px;
+        font-size: 25px;
+    }
+
+    .profile-info-inner-text p {
+        padding-top: 0;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .profile-info-inner-text {
+        position: absolute;
+        top: 22px;
+        text-align: center;
+        left: 108px;
+    }
+
+    .second-rectangle-text {
+        position: absolute;
+        top: 80px;
+    }
+
+    .pool-info-inner-text-2 span {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-3 span {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-2 p {
+        padding-top: 0px;
+        margin: 0;
+    }
+
+    .pool-info-inner-text-3 p {
+        padding-top: 0px;
+        margin: 0;
+    }
+    
+
+}
+
+
+
+
+
+
+@media (max-width:1024px) {
+    
+    .partner-data {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .partner-first-data {
+        position: relative;
+        text-align: center;
+    }
+
+    .partner-inner-text {
+        position: absolute;
+        top: 38px;
+        padding: 0 40px;
+        left: 172px;
+        text-align: left;
+    }
+
+    .subtract-rectangle {
+        width: 620px;
+    }
+
+    .small-rectangle-right {
+        right: 157px;
+    }
+
+    .owl-carousel .owl-prev {
+        left:420px;
+        top: 105%;
+    }
+
+    .owl-carousel .owl-next {
+        right:420px;
+        top: 105%;
+    }
+
+    .last-section-blur-img {
+        position: absolute;
+        top: -130px;
+        right: -24px;
+    }
+
+    .home-hero-section {
+        padding: 100px 12px 150px 12px;
+    }
+
+    .header-text h1 {
+        font-size: 50px;
+    }
+
+    .header-text h2 {
+        font-size: 75px;
+    }
+
+    .header-text p {
+        font-size: 20px;
+        max-width: 790px;
+    }
+
+    .header-btn-line {
+        display: flex;
+        align-items: center;
+        margin-left: 0px;
+    }
+
+    .second-rectangle {
+        position: relative;
+        margin-top: 120px;
+    }
+
+    .second-rectangle-text p {
+        font-size: 16px;
+    }
+
+    .second-rectangle-text {
+        top: 35px;
+        padding: 0 35px;
+
+    }
+
+    .btn-right-margin {
+        margin-left: 115px;
+    }
+
+    .works-text h1 {
+        font-size: 50px;
+    }
+
+    .works-line {
+        position: relative;
+        margin-top: 250px;
+    }
+
+    .works-line img {
+        margin-left: 60px;
+    }
+
+    .work-first-text h1 {
+        font-size: 90px;
+        padding-right: 15px;
+    }
+
+    .work-first-text-2 h1 {
+        font-size: 90px;
+        padding-right: 15px;
+    }
+
+    .rectangle {
+        background-color: #11041C;
+        width: 70px;
+        height: 100px;
+    }
+
+    .work-first-text-3 h1 {
+        font-size: 90px;
+        padding-right: 15px;
+    }
+
+    .work-inner-text h3 {
+
+        font-size: 26px;
+    }
+
+    .work-inner-text p {
+        max-width: 400px;
+        font-size: 16px;
+    }
+
+    .work-first-text {
+        position: absolute;
+        top: -160px;
+        display: flex;
+        align-items: center;
+        left: 38px;
+    }
+
+    .bg-rectangle {
+        height: 1050px;
+    }
+
+    .work-inner-bg {
+        background-color: #11041C;
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+    .work-first-text-3 {
+        bottom: -125px;
+    }
+
+    .btn-width img {
+        margin-left: 20px;
+    }
+
+    .btn-width {
+        padding: 15px 10px 15px 25px;
+    }
+
+    .partner-text h1 {
+        font-size: 50px;
+    }
+
+    .partner-text p {
+        font-size: 20px;
+        max-width: 888px;
+    }
+
+    .news-title h1 {
+        font-size: 50px;
+    }
+
+    .our-mission-text h1 {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+
+    .our-mission-text h3 {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .roadmap-praragraph p {
+        font-size: 16px;
+    }
+
+    .img-align img {
+        width: 100%;
+    }
+
+    .last-build-section-img img {
+        width: 85%;
+    }
+
+    .build-text h1 {
+        font-size: 50px;
+    }
+
+    .build-text p {
+        font-size: 20px;
+    }
+
+    .build-text li a {
+        font-size: 18px;
+    }
+
+    .build-text li {
+        padding-bottom: 15px;
+    }
+
+    .right-footer-text {
+        margin: 50px 0;
+    }
+
+    .subtract img {
+        width: 285px;
+    }
+
+    .pool-info-inner-text span {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text p {
+        padding-top: 0px;
+        margin: 0;
+    }
+
+    .pool-info-inner-text-2 span {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-3 span {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-2 p {
+        padding-top: 0px;
+        margin: 0;
+    }
+
+    .pool-info-inner-text-3 p {
+        padding-top: 0px;
+        margin: 0;
+    }
+
+    .pool-info-inner-text {
+        top: 12px;
+        left: 60px;
+    }
+
+    .pool-info-inner-text-2 {
+        top: 12px;
+        left: 70px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 12px;
+        left: 90px;
+    }
+
+    .borrow-left-blur-img img {
+        width: 100%;
+    }
+
+    .stable-text p {
+        font-size: 20px;
+        padding-top: 10px;
+        line-height: 33px;
+    }
+
+    .pools-text-inner p {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+
+    .odd td {
+        padding: 25px 15px;
+    }
+
+    .line-img {
+        display: none;
+    }
+
+    .profile-subtract-img img {
+        width: 295px;
+    }
+
+    .profile-info-grid {
+        grid-gap: 25px;
+    }
+
+    .profile-info-inner-text span {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+
+    .profile-info-inner-text p {
+        font-size: 24px;
+        padding-top: 0px;
+        margin: 0;
+    }
+
+    .profile-info-inner-text {
+        top: 15px;
+        left: 82px;
+    }
+
+    .small-rectangle-right img {
+        width: 98px;
+    }
+
+    .slider-inner-img h3 {
+        font-size: 18px;
+        line-height: 30px;
+        padding-top: 20px;
+    }
+
+    .slider-inner-img p {
+        font-size: 14px;
+        padding-top: 8px;
+        line-height: 28px;
+    }
+
+    
+
+
+
+}
+/*--------------------------------------------------------------
+  # Desktop Navigation
+  --------------------------------------------------------------*/
+@media (min-width: 991px) {
+    .navbar {
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .navbar ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        align-items: center;
+    }
+
+    .navbar li {
+        position: relative;
+    }
+
+    .navbar>ul>li {
+        white-space: nowrap;
+        padding: 10px 30px;
+    }
+
+    .navbar a,
+    .navbar a:focus {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 3px;
+        font-family: var(--primary-font);
+        font-size: 20px;
+        font-weight: 400;
+        color: #fff;
+        letter-spacing: 0.5px;
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .navbar a i,
+    .navbar a:focus i {
+        font-size: 12px;
+        line-height: 0;
+        margin-left: 5px;
+    }
+
+    .navbar a:hover,
+    .navbar .active,
+    .navbar .active:focus,
+    .navbar li:hover>a {
+        color: #9B26F9;
+    }
+}
+
+@media (min-width: 991px) {
+
+    .mobile-nav-show,
+    .mobile-nav-hide {
+        display: none;
+    }
+
+}
+
+/*--------------------------------------------------------------
+  # Mobile Navigation
+  --------------------------------------------------------------*/
+@media (max-width: 991px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        max-width: 350px;
+        bottom: 0;
+        transition: 0.3s;
+        z-index: 9997;
+    }
+
+    .navbar ul {
+        position: absolute;
+        inset: 0;
+        padding: 50px 0 10px 0;
+        margin: 0;
+        background: #121212;
+        overflow-y: auto;
+        transition: 0.3s;
+        z-index: 9998;
+    }
+
+    .navbar a,
+    .navbar a:focus {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #fff;
+        white-space: nowrap;
+        transition: 0.3s;
+    }
+
+    .navbar a i,
+    .navbar a:focus i {
+        font-size: 12px;
+        line-height: 0;
+        margin-left: 5px;
+    }
+
+    .navbar a:hover,
+    .navbar li:hover>a {
+        color: #fff;
+    }
+
+
+    .mobile-nav-show {
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+        line-height: 0;
+        transition: 0.5s;
+        z-index: 9999;
+        margin: 0 10px 0 20px;
+        margin-left: auto;
+    }
+
+    .mobile-nav-hide {
+        color: white;
+        font-size: 32px;
+        cursor: pointer;
+        line-height: 0;
+        transition: 0.5s;
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        z-index: 9999;
+    }
+
+    .mobile-nav-active {
+        overflow: hidden;
+    }
+
+    .mobile-nav-active .navbar {
+        right: 0;
+    }
+
+    .mobile-nav-active .navbar:before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgb(0 0 0 / 90%);
+        z-index: 9996;
+    }
+
+    .header .header-btn {
+        display: none;
+    }
+    .app-btn {
+        display: block !important;
+    }
+}
+
+
+@media (max-width:800px) {
+    .left-blur-img img {
+        width: 700px;
+    }
+
+    .header-dashed-img {
+        width: 130px;
+    }
+
+    .owl-image {
+        width: 580px !important;
+    }
+
+   
+    
+
+    .item {
+        margin-left: 10px;
+    }
+
+    .owl-carousel .owl-prev {
+        left: 300px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 300px;
+    }
+
+    .owl-carousel .owl-next,
+    .owl-carousel .owl-prev {
+        top: 105%;
+    }
+
+    .header-text h1 {
+        font-size: 40px;
+    }
+
+    .header-text h2 {
+        font-size: 65px;
+    }
+
+    .header-text p {
+        font-size: 16px;
+        max-width: 640px;
+    }
+
+    .purple-btn {
+        padding: 10px 15px;
+        font-size: 18px;
+    }
+
+    .purple-border-btn {
+        padding: 10px 15px;
+        font-size: 18px;
+    }
+
+    .slider-btn {
+        padding: 10px 25px;
+    }
+
+    .second-rectangle-text {
+        top: 5px;
+        padding: 0 35px;
+        display: block;
+        left: 100px;
+    }
+
+    .second-rectangle-inner-text {
+        margin-bottom: 50px;
+    }
+
+    .btn-right-margin {
+        margin-left: 55px;
+        margin-right: 70px;
+    }
+
+    .works-text h1 {
+        font-size: 40px;
+    }
+
+    .works-line {
+        position: relative;
+        margin-top: 225px;
+    }
+
+    .work-inner-text h3 {
+        font-size: 20px;
+        letter-spacing: 1px;
+        line-height: 35px;
+        margin-bottom: 7px;
+    }
+
+    .work-inner-text p {
+        max-width: 309px;
+        font-size: 15px;
+    }
+
+    .work-first-text {
+        top: -140px;
+    }
+
+    .work-first-text-2 {
+        top: 180px;
+        right: 5px;
+    }
+
+    .btn-section-bg {
+        width: 100%;
+        background-color: #11041C;
+        padding: 0px 0 100px 0;
+    }
+
+    .partner-text h1 {
+        font-size: 40px;
+    }
+
+    .partner-text p {
+        font-size: 16px;
+        max-width: 645px;
+        padding-top: 20px;
+    }
+
+    .partner-inner-text {
+        left: 40px;
+        top: 40px;
+    }
+
+    .small-rectangle-right {
+        right: 37px;
+    }
+
+    .news-title h1 {
+        font-size: 40px;
+    }
+
+    .slider-inner-img p {
+        padding-top: 10px;
+        line-height: 27px;
+        margin-bottom: 25px;
+    }
+
+    .slider-inner-img h3 {
+        padding-top: 40px;
+    }
+
+    .our-mission-text h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .our-mission-text p {
+        font-size: 16px;
+    }
+
+    .img-align img {
+        width: 70%;
+    }
+
+    .img-align {
+        justify-content: center;
+    }
+
+    .build-text h1 {
+        font-size: 40px;
+    }
+
+    .build-text p {
+        font-size: 16px;
+    }
+
+    .build-img-align {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .pool-info-grid {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        text-align: center;
+    }
+
+    .subtract img {
+        width: 400px;
+    }
+
+    .pool-info-img {
+        margin: auto;
+    }
+
+    .pool-info-inner-text {
+        top: 35px;
+        left: 255px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 30px;
+        left: 285px;
+    }
+
+    .stable-text h1 {
+        font-size: 40px;
+    }
+
+    .pool-info-text h1 {
+        font-size: 40px;
+    }
+
+    .pools-text-inner h1 {
+        font-size: 40px;
+    }
+
+    .table-img {
+        width: 140px;
+    }
+
+    .table>:not(:last-child)>:last-child>* {
+        font-size: 20px;
+    }
+
+    .odd td {
+        padding: 25px 15px;
+        font-size: 18px;
+    }
+
+    .table-btn {
+        font-size: 18px;
+    }
+
+    .gray-circle-img {
+        padding-right: 15px;
+        padding-bottom: 10px;
+    }
+
+    .profile-info-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .profile-subtract-img img {
+        width: 405px;
+    }
+
+   
+    .profile-text h1 {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .profile-text h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .profile-span {
+        font-size: 20px;
+    }
+
+    .profile-info-inner-text {
+        top: 35px;
+        left: 135px;
+    }
+
+    .token-text h3 {
+        font-size: 20px;
+    }
+
+    .token-text span {
+        font-size: 20px;
+    }
+
+    .label {
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+
+    .label span {
+        font-size: 23px;
+    }
+
+    .pool-info-inner-text-2 {
+        top: 33px;
+        left: 270px;
+    }
+
+}
+
+
+
+@media (max-width:768px) {
+    .coming-soon-text {
+        font-size: 45px;
+    }
+   
+    .faq-title h2 {
+        font-size: 40px;
+    }
+    .faq-title p {
+        font-size: 18px;
+    }
+    .faq .faq-list li {
+        padding: 20px 12px;
+    }
+    .faq .faq-list a {
+        font-size: 18px;
+    }
+    .faq-list p {
+        font-size: 16px;
+    }
+    .faq-section {
+        padding: 70px 0;
+    }
+
+
+    .profile-img {
+        width: 100px;
+        height: 85px;
+    }
+    .pool-info-inner-text-2 {
+        top: 33px;
+        left: 270px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 33px;
+        left: 285px;
+    }
+
+    .left-blur-img img {
+        width: 700px;
+    }
+
+    .header-dashed-img {
+        width: 130px;
+    }
+
+    .owl-image {
+        width: 580px !important;
+    }
+
+  
+    
+    .item {
+        margin-left: 10px;
+    }
+
+    .owl-carousel .owl-prev {
+        left: 300px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 300px;
+    }
+
+    .owl-carousel .owl-next,
+    .owl-carousel .owl-prev {
+        top: 105%;
+    }
+
+    .header-text h1 {
+        font-size: 40px;
+    }
+
+    .header-text h2 {
+        font-size: 65px;
+    }
+
+    .header-text p {
+        font-size: 16px;
+        max-width: 640px;
+    }
+
+    .purple-btn {
+        padding: 10px 15px;
+        font-size: 18px;
+    }
+
+    .purple-border-btn {
+        padding: 10px 15px;
+        font-size: 18px;
+    }
+
+    .slider-btn {
+        padding: 10px 25px;
+    }
+
+    .second-rectangle-text {
+        top: 5px;
+        padding: 0 35px;
+        display: block;
+        left: 100px;
+    }
+
+    .second-rectangle-inner-text {
+        margin-bottom: 50px;
+    }
+
+    .btn-right-margin {
+        margin-left: 55px;
+        margin-right: 70px;
+    }
+
+    .works-text h1 {
+        font-size: 40px;
+    }
+
+    .works-line {
+        position: relative;
+        margin-top: 225px;
+    }
+
+    .work-inner-text h3 {
+        font-size: 20px;
+        letter-spacing: 1px;
+        line-height: 35px;
+        margin-bottom: 7px;
+    }
+
+    .work-inner-text p {
+        max-width: 309px;
+        font-size: 15px;
+    }
+
+    .work-first-text {
+        top: -140px;
+    }
+
+    .work-first-text-2 {
+        top: 175px;
+        right: 5px;
+    }
+
+    .btn-section-bg {
+        width: 100%;
+        background-color: #11041C;
+        padding: 0px 0 100px 0;
+    }
+
+    .partner-text h1 {
+        font-size: 40px;
+    }
+
+    .partner-text p {
+        font-size: 16px;
+        max-width: 645px;
+        padding-top: 20px;
+    }
+
+    .partner-inner-text {
+        left: 40px;
+        top: 40px;
+    }
+
+    .small-rectangle-right {
+        right: 37px;
+    }
+
+    .news-title h1 {
+        font-size: 40px;
+    }
+
+    .slider-inner-img p {
+        padding-top: 10px;
+        line-height: 27px;
+        margin-bottom: 25px;
+    }
+
+    .slider-inner-img h3 {
+        padding-top: 40px;
+    }
+
+    .our-mission-text h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .our-mission-text p {
+        font-size: 16px;
+    }
+
+    .img-align img {
+        width: 70%;
+    }
+
+    .img-align {
+        justify-content: center;
+    }
+
+    .build-text h1 {
+        font-size: 40px;
+    }
+
+    .build-text p {
+        font-size: 16px;
+    }
+
+    .build-img-align {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .pool-info-grid {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        text-align: center;
+    }
+
+    .subtract img {
+        width: 400px;
+    }
+
+    .pool-info-img {
+        margin: auto;
+    }
+
+    .pool-info-inner-text {
+        top: 35px;
+        left: 262px;
+    }
+
+    .stable-text h1 {
+        font-size: 40px;
+    }
+
+    .pool-info-text h1 {
+        font-size: 40px;
+    }
+
+    .pools-text-inner h1 {
+        font-size: 40px;
+    }
+
+    .table-img {
+        width: 135px;
+    }
+
+    .table>:not(:last-child)>:last-child>* {
+        font-size: 20px;
+    }
+
+    .odd td {
+        padding: 25px 15px;
+        font-size: 18px;
+    }
+
+    .table-btn {
+        font-size: 18px;
+    }
+
+    .gray-circle-img {
+        padding-right: 15px;
+        padding-bottom: 10px;
+    }
+
+    .profile-info-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .profile-subtract-img img {
+        width: 405px;
+    }
+
+    .profile-text h1 {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .profile-text h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .profile-span {
+        font-size: 20px;
+    }
+
+    .profile-info-inner-text {
+        top: 35px;
+        left: 135px;
+    }
+
+    .token-text h3 {
+        font-size: 20px;
+    }
+
+    .token-text span {
+        font-size: 20px;
+    }
+
+    .label {
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+
+    .label span {
+        font-size: 23px;
+    }
+    .token-text {
+        height: 80px;
+    }
+    .token-text-col-1 {
+        height: auto;
+        padding: 0 12px;
+    }
+    .label-bar {
+        margin-top: 20px;
+    }
+    .input-line-1 {
+        margin-top: 50px;
+    }
+    .token-text-col-2 {
+        height: auto;
+        padding: 20px 12px;
+    }
+    .pool-info-text {
+        padding-top: 40px;
+    }
+
+}
+
+@media (max-width:425px) {
+    .walletconnect-connect__buttons__wrapper__wrap {
+        grid-template-columns: repeat(3, 1fr)!important;
+    }
+    .dashboard {
+        font-size: 25px;
+    }
+    .agree-btn{
+        font-size: 15px;
+    }
+    .terms-text p {
+        font-size: 15px;
+        letter-spacing: 1px;
+        line-height: 24px;
+    }
+    .wallet-text p {
+        font-size: 16px;
+        line-height: 22px;
+        margin-top: 0px;
+        margin-bottom: 30px;
+    }
+    .popup-btn {
+        padding: 15px 15px;
+        font-size: 18px;
+    }
+    .form-check-label {
+        font-size: 15px;
+    }
+
+
+    .coming-soon-text {
+        font-size: 33px;
+    }
+   
+  
+    .faq-title p {
+        font-size: 16px;
+        padding-top: 10px;
+    }
+    .faq .faq-list a {
+        font-size: 17px;
+    }
+    .faq .faq-list .icon-show, .faq .faq-list .icon-close {
+        font-size: 15px;
+    }
+    .left-blur-img img {
+        width: 100%;
+    }
+
+    .left-blur-img {
+        top: -120px;
+    }
+
+    .works-line img {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .second-rectangle-text {
+        left: 0px;
+    }
+
+    .header-dashed-img {
+        display: none;
+    }
+
+    .input-line form {
+        width: 240px;
+    }
+
+    .subtract-rectangle {
+        width: 420px;
+    }
+
+    .small-rectangle-right img {
+        width: 65px;
+    }
+
+    .small-rectangle-right {
+        right: 0px;
+    }
+
+    .partner-inner-text img {
+        margin-bottom: 20px;
+        width: 140px;
+    }
+
+    .partner-inner-text {
+        left: 0px;
+        top: 20px;
+        padding: 0 20px;
+    }
+
+    .partner-inner-text h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .partner-inner-text span {
+        font-size: 16px;
+    }
+
+    .last-section-blur-img img {
+        display: none;
+    }
+
+    .owl-image {
+        width: 325px !important;
+    }
+
+
+    .slider-inner-img h3 {
+        padding-top: 5px;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .slider-inner-img p {
+        padding-top: 0px;
+        line-height: 20px;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .slider-btn {
+        padding: 10px 10px;
+        width: 145px;
+        font-size: 16px;
+    }
+
+    .item {
+        margin-left: 10px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 2px;
+    }
+
+    .owl-carousel .owl-prev {
+        left: 2px;
+    }
+
+    .subtract-rectangle {
+        width: 390px;
+    }
+
+    .small-rectangle-right img {
+        width: 60px;
+    }
+
+    .small-rectangle-right {
+        right: 5px;
+    }
+
+    .partner-inner-text img {
+        margin-bottom: 15px;
+        width: 120px;
+    }
+
+    .partner-inner-text {
+        left: 0px;
+        top: 25px;
+    }
+
+    .header-text h1 {
+        font-size: 34px;
+    }
+
+    .header-text h2 {
+        font-size: 55px;
+    }
+
+    .header-text p {
+        font-size: 14px;
+        max-width: 640px;
+    }
+
+    .btn-mr {
+        margin: 0 25px 0 25px;
+    }
+
+    .header-btn-line {
+        margin-top: 20px;
+    }
+
+    .purple-btn {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
+    .purple-border-btn {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
+    .btn-right-margin {
+        margin-left: 60px;
+        margin-right: 55px;
+    }
+
+    .second-rectangle-img img {
+        display: none;
+    }
+
+    .home-hero-section {
+        padding: 100px 12px 260px 12px;
+    }
+
+    .second-rectangle-text {
+        top: 0px;
+        padding: 0 0px;
+        display: block;
+    }
+
+    .second-rectangle-text p {
+        font-size: 14px;
+        line-height: 30px;
+    }
+
+    .works-text h1 {
+        font-size: 34px;
+    }
+
+    .work-first-text h1 {
+        font-size: 80px;
+    }
+
+    .work-first-text-2 h1 {
+        font-size: 80px;
+        padding-right: 15px;
+    }
+
+    .work-first-text-3 h1 {
+        font-size: 80px;
+        padding-right: 15px;
+    }
+
+    .work-inner-text h3 {
+        font-size: 18px;
+    }
+
+    .work-inner-text p {
+        max-width: 243px;
+        font-size: 12px;
+    }
+
+    .works-line img {
+        margin-left: 30px;
+        width: 85%;
+    }
+
+    .work-first-text-2 {
+        top: 75px;
+        right: 5px;
+    }
+
+    .work-first-text {
+        left: 10px;
+    }
+
+    .work-first-text-3 {
+        bottom: -95px;
+        left: 21px;
+    }
+
+    .works-line {
+        margin-top: 180px;
+    }
+
+    .bg-rectangle {
+        height: 750px;
+    }
+
+    .partner-text h1 {
+        font-size: 34px;
+    }
+
+    .partner-text p {
+        font-size: 14px;
+        max-width: 370px;
+        padding-top: 15px;
+    }
+
+    .news-title h1 {
+        font-size: 34px;
+    }
+
+    .our-mission-text h1 {
+        font-size: 34px;
+    }
+
+    .our-mission-text h3 {
+        font-size: 15px;
+        letter-spacing: 1px;
+        line-height: 25px;
+    }
+
+    .our-mission-text p {
+        font-size: 12px;
+    }
+
+    .row-margin {
+        margin-top: 70px;
+    }
+
+    .build-text h1 {
+        font-size: 34px;
+    }
+
+    .build-text p {
+        font-size: 14px;
+    }
+
+    .build-text li a {
+        font-size: 16px;
+    }
+
+    .second-data-text {
+        margin-top: 40px;
+    }
+
+    .input-line form input[type=submit] {
+        width: 130px;
+        font-size: 14px;
+        right: -145px;
+    }
+
+    .input-line form input[type=email] {
+        font-size: 14px;
+    }
+
+    .owl-carousel .owl-next,
+    .owl-carousel .owl-prev {
+        top: 105%;
+    }
+
+    .owl-carousel .owl-prev {
+        left: 160px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 160px;
+    }
+
+    .header-left-blur-img img {
+        width: 320px;
+    }
+
+    .stable-text p {
+        font-size: 16px;
+        padding-top: 10px;
+        line-height: 28px;
+    }
+
+    .pools-text-inner p {
+        font-size: 16px;
+        padding-top: 10px;
+        line-height: 28px;
+    }
+
+    .hero-section {
+        padding: 90px 12px;
+    }
+
+    .stable-text h1 {
+        font-size: 33px;
+    }
+
+    .pool-info-text h1 {
+        font-size: 33px;
+    }
+
+    .pools-text-inner h1 {
+        font-size: 33px;
+    }
+
+    .pools-text h1 {
+        font-size: 55px;
+    }
+
+    .subtract img {
+        width: 375px;
+    }
+
+    .pool-info-inner-text {
+        top: 30px;
+        left: 100px;
+    }
+
+    .table>:not(:last-child)>:last-child>* {
+        font-size: 15px;
+        padding: 35px 50px 35px 10px;
+    }
+
+    .odd td {
+        padding: 15px 10px;
+        font-size: 15px;
+    }
+
+    .table-btn {
+        font-size: 15px;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .gray-circle-img {
+        width: 65px;
+    }
+
+    .submit {
+        position: absolute;
+        top: 70px;
+        left: 0px;
+        bottom: -70px;
+    }
+
+    .input-line-1 form {
+        width: 400px;
+    }
+
+    .email {
+        width: 400px;
+    }
+
+    .profile-align {
+        display: inline-block;
+        align-items: center;
+    }
+
+    .profile-text {
+        padding-left: 0px;
+        margin-top: 30px;
+    }
+
+    .profile-subtract-img img {
+        width: 375px;
+    }
+
+    .profile-text h1 {
+        font-size: 32px;
+    }
+
+    .profile-info-inner-text {
+        top: 35px;
+        left: 130px;
+    }
+
+    .token-text h3 {
+        font-size: 18px;
+    }
+
+    .token-text span {
+        font-size: 18px;
+    }
+
+    .profile-info-inner-text span {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .profile-info-inner-text p {
+        font-size: 20px;
+    }
+
+    .img-align img {
+        width: 80%;
+    }
+
+    .footer-text li a {
+        font-size: 18px;
+    }
+
+    .inner-slider-btn {
+        padding-top: 15px;
+    }
+
+    .roadmap-btn {
+        padding: 12px 12px;
+        width: 106px;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-2 {
+        top: 29px;
+        left: 120px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 30px;
+        left: 130px;
+    }
+
+    .senior-pool-padding {
+        padding: 90px 0 40px 0;
+    }
+    .profile-img {
+        width: 85px;
+        height: 65px;
+    }
+    .profile-img-1 {
+        width: 130px;
+        height: 130px;
+    }
+
+}
+
+@media (max-width:414px) {
+    .header-text h1 {
+        font-size: 32px;
+    }
+
+    .second-rectangle-text p {
+        font-size: 13px;
+        line-height: 30px;
+    }
+
+    .btn-right-margin {
+        margin-left: 55px;
+        margin-right: 48px;
+    }
+
+    .works-line img {
+        margin-left: 30px;
+        width: 90%;
+    }
+
+    .subtract-rectangle {
+        width: 375px;
+    }
+
+    .almavest-img {
+        width: 90px !important;
+    }
+
+    .partner-inner-text {
+        left: 0px;
+        top: 20px;
+    }
+
+    .owl-carousel .owl-prev {
+        left: 150px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 150px;
+    }
+
+  
+
+    .our-mission-text h3 {
+        font-size: 14px;
+    }
+
+    .img-align img {
+        width: 80%;
+    }
+
+    .subtract img {
+        width: 362px;
+    }
+
+    .pool-info-inner-text {
+        top: 25px;
+        left: 95px;
+    }
+
+    .profile-subtract-img img {
+        width: 362px;
+    }
+
+    .profile-info-inner-text {
+        top: 32px;
+        left: 126px;
+    }
+
+    .input-line-1 form {
+        width: 385px;
+    }
+
+    .email {
+        width: 385px;
+    }
+
+    .input-line form {
+        width: 350px;
+    }
+
+    .input-line form input[type=submit] {
+        width: 130px;
+        font-size: 14px;
+        left: 0px;
+        top: 50px;
+        bottom: -50px;
+    }
+
+    .pool-info-inner-text-2 {
+        top: 25px;
+        left: 108px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 30px;
+        left: 120px;
+    }
+
+}
+
+@media (max-width:412px) {
+    .header-text h1 {
+        font-size: 32px;
+    }
+
+    .second-rectangle-text p {
+        font-size: 13px;
+        line-height: 30px;
+    }
+
+    .btn-right-margin {
+        margin-left: 55px;
+        margin-right: 48px;
+    }
+
+    .works-line img {
+        margin-left: 30px;
+        width: 90%;
+    }
+
+    .subtract-rectangle {
+        width: 375px;
+    }
+
+    .almavest-img {
+        width: 90px !important;
+    }
+
+    .partner-inner-text {
+        left: 0px;
+        top: 20px;
+    }
+
+    .owl-carousel .owl-prev {
+        left: 150px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 150px;
+    }
+
+  
+
+    .our-mission-text h3 {
+        font-size: 14px;
+    }
+
+    .img-align img {
+        width: 80%;
+    }
+
+    .subtract img {
+        width: 362px;
+    }
+
+    .pool-info-inner-text {
+        top: 25px;
+        left: 95px;
+    }
+
+    .profile-subtract-img img {
+        width: 362px;
+    }
+
+    .profile-info-inner-text {
+        top: 32px;
+        left: 126px;
+    }
+
+    .input-line-1 form {
+        width: 385px;
+    }
+
+    .email {
+        width: 385px;
+    }
+
+    .input-line form {
+        width: 350px;
+    }
+
+    .input-line form input[type=submit] {
+        width: 130px;
+        font-size: 14px;
+        left: 0px;
+        top: 50px;
+        bottom: -50px;
+    }
+
+}
+
+@media (max-width:390px) {
+    .terms-text p {
+        font-size: 13px;
+    }
+    .form-check-label {
+        font-size: 13px;
+    }
+    .coming-soon-text {
+        font-size: 31px;
+    }
+ 
+    .faq-title p {
+        font-size: 14px;
+        padding-top: 10px;
+    }
+    
+    .faq .faq-list a {
+        font-size: 15px;
+        width: 300px;
+    }
+    .faq .faq-list .icon-show, .faq .faq-list .icon-close {
+        right: -35px;
+        top: 0;
+    }
+    .faq-list p {
+        font-size: 14px;
+    }
+
+    .header-text h1 {
+        font-size: 30px;
+    }
+
+    .header-text h2 {
+        font-size: 50px;
+    }
+
+    .second-rectangle-text p {
+        font-size: 12px;
+        line-height: 30px;
+    }
+
+    .btn-right-margin {
+        margin-left: 44px;
+        margin-right: 41px;
+    }
+
+    .subtract-rectangle {
+        width: 365px;
+    }
+
+    .small-rectangle-right img {
+        width: 55px;
+    }
+
+    .small-rectangle-right {
+        right: 0px;
+    }
+
+    .partner-inner-text h3 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .partner-inner-text span {
+        font-size: 14px;
+    }
+
+    .owl-carousel .owl-prev {
+        left: 140px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 140px;
+    }
+
+    .our-mission-text h3 {
+        font-size: 13px;
+    }
+
+    .input-line form input[type=submit] {
+        width: 130px;
+        font-size: 14px;
+        left: 0px;
+        top: 50px;
+        bottom: -50px;
+    }
+
+    .subtract img {
+        width: 340px;
+    }
+
+    .pool-info-inner-text span {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text p {
+        font-size: 24px;
+    }
+
+    .pool-info-inner-text {
+        top: 30px;
+        left: 95px;
+    }
+
+    .pool-info-inner-text-2 span {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-3 span {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-2 p {
+        font-size: 24px;
+    }
+
+    .pool-info-inner-text-3 p {
+        font-size: 24px;
+    }
+
+    .profile-subtract-img img {
+        width: 342px;
+    }
+
+    .profile-info-inner-text {
+        top: 32px;
+        left: 116px;
+    }
+
+    .input-line-1 form {
+        width: 365px;
+    }
+
+    .email {
+        width: 365px;
+    }
+
+}
+
+@media (max-width:375px) {
+    .coming-soon-text {
+        font-size: 30px;
+    }
+    .faq .faq-list a {
+        font-size: 15px;
+    
+    }
+    .faq .faq-list .icon-show, .faq .faq-list .icon-close {
+        right: -30px;
+        top: 0;
+    }
+    .header-text h1 {
+        font-size: 30px;
+    }
+
+    .header-text h2 {
+        font-size: 50px;
+    }
+
+    .input-line form input[type=submit] {
+        width: 130px;
+        font-size: 14px;
+        right: -112px;
+    }
+
+    .small-rectangle-right img {
+        width: 52px;
+    }
+
+    .subtract-rectangle {
+        width: 350px;
+    }
+
+    .small-rectangle-right {
+        right: 0px;
+    }
+
+    .partner-inner-text span {
+        font-size: 14px;
+    }
+
+    .partner-inner-text h3 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .btn-mr {
+        margin: 0 20px 0 5px;
+    }
+
+    .second-rectangle-text p {
+        font-size: 12px;
+    }
+
+    .btn-right-margin {
+        margin-left: 40px;
+        margin-right: 25px;
+    }
+
+    .works-line {
+        margin-top: 210px;
+    }
+
+    .work-first-text h1 {
+        font-size: 65px;
+        padding-right: 10px;
+    }
+
+    .work-first-text-2 h1 {
+        font-size: 65px;
+        padding-right: 10px;
+    }
+
+    .work-first-text-3 h1 {
+        font-size: 65px;
+        padding-right: 10px;
+    }
+
+    .work-inner-text h3 {
+        font-size: 16px;
+    }
+
+    .rectangle {
+        width: 50px;
+        height: 80px;
+    }
+
+    .work-inner-text p {
+        max-width: 243px;
+        font-size: 10px;
+    }
+
+    .work-first-text {
+        top: -100px;
+        left: 14px;
+    }
+
+    .work-first-text-2 {
+        top: 70px;
+        right: 0px;
+    }
+
+    .work-first-text-3 {
+        bottom: -85px;
+        left: 30px;
+    }
+
+    .purple-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .purple-border-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .btn-width img {
+        width: 25px;
+    }
+
+    .works-text h1 {
+        font-size: 30px;
+    }
+
+    .partner-text h1 {
+        font-size: 30px;
+    }
+
+  
+    .owl-carousel .owl-prev {
+        left: 130px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 130px;
+    }
+
+    .almavest-img {
+        width: 80px !important;
+    }
+
+    .news-title h1 {
+        font-size: 30px;
+    }
+
+    .our-mission-text h1 {
+        font-size: 30px;
+    }
+
+    .our-mission-text h3 {
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 23px;
+    }
+
+    .build-text h1 {
+        font-size: 30px;
+    }
+
+    .img-align img {
+        width: 90%;
+    }
+
+    .input-line form input[type=submit] {
+        width: 130px;
+        font-size: 14px;
+        left: 0px;
+        top: 50px;
+        bottom: -50px;
+    }
+
+    .subtract img {
+        width: 325px;
+    }
+
+    .pool-info-inner-text span {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text p {
+        font-size: 24px;
+    }
+
+    .pool-info-inner-text {
+        top: 25px;
+        left: 85px;
+    }
+
+    .input-line-1 form {
+        width: 350px;
+    }
+
+    .email {
+        width: 350px;
+    }
+
+    .profile-subtract-img img {
+        width: 325px;
+    }
+
+    .profile-info-inner-text {
+        top: 27px;
+        left: 110px;
+    }
+
+    .pool-info-inner-text-2 span {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-3 span {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-2 p {
+        font-size: 24px;
+    }
+
+    .pool-info-inner-text-3 p {
+        font-size: 24px;
+    }
+
+    .senior-pool-padding {
+        padding: 50px 0 40px 0;
+    }
+
+    .pool-info-inner-text-2 {
+        top: 25px;
+        left: 100px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 25px;
+        left: 110px;
+    }
+
+}
+
+
+@media (max-width:360px) {
+    .coming-soon-text {
+        font-size: 29px;
+    }
+    .faq .faq-list a {
+        font-size: 13px;
+    }
+    .faq-list p {
+        font-size: 12px;
+    }
+    .faq .faq-list .icon-show, .faq .faq-list .icon-close {
+        right: -15px;
+        top: 0;
+    }
+    .owl-carousel .owl-prev {
+        left: 110px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 110px;
+    }
+
+    .subtract-rectangle {
+        width: 295px;
+    }
+
+    .small-rectangle-right img {
+        width: 45px;
+    }
+
+    .partner-inner-text img {
+        margin-bottom: 5px;
+        width: 95px;
+    }
+
+    .partner-inner-text {
+        left: 25px;
+        top: 22px;
+        padding: 0 10px;
+    }
+
+    .small-rectangle-right {
+        right: 20px;
+    }
+
+    .partner-inner-text h3 {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .partner-inner-text span {
+        font-size: 12px;
+    }
+
+    .stable-text p {
+        font-size: 14px;
+        padding-top: 5px;
+        line-height: 25px;
+    }
+
+    .input-line form {
+        width: 290px;
+    }
+
+    .input-line form input[type=email] {
+        font-size: 14px;
+        width: 290px;
+
+    }
+
+    .footer-right-input span {
+        font-family: var(--primary-font);
+        font-size: 18px;
+    }
+
+    .header-text h1 {
+        font-size: 24px;
+    }
+
+    .header-text h2 {
+        font-size: 45px;
+    }
+
+    .header-text p {
+        font-size: 11px;
+        max-width: 640px;
+    }
+
+    .purple-btn {
+        padding: 10px 10px;
+        font-size: 12px;
+    }
+
+    .works-line img {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .partner-data {
+        margin-top: 65px;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .subtract img {
+        width: 270px;
+    }
+
+    .pool-info-inner-text span {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-2 span {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text-3 span {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text p {
+        font-size: 20px;
+    }
+
+    .pool-info-inner-text-2 p {
+        font-size: 20px;
+    }
+
+    .pool-info-inner-text-3 p {
+        font-size: 20px;
+    }
+
+    .pool-info-inner-text {
+        top: 22px;
+        left: 90px;
+    }
+
+    .pool-info-inner-text-2 {
+        top: 20px;
+        left: 100px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 20px;
+        left: 110px;
+    }
+
+    .pools-text-inner p {
+        font-size: 13px;
+        padding-top: 10px;
+        line-height: 25px;
+    }
+
+    .profile-subtract-img img {
+        width: 270px;
+    }
+
+    .profile-info-inner-text span {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .profile-info-inner-text p {
+        font-size: 18px;
+    }
+
+    .profile-info-inner-text {
+        top: 20px;
+        left: 88px;
+    }
+
+    .input-line-1 form {
+        width: 295px;
+    }
+
+    .email {
+        width: 295px;
+    }
+
+    .token-text h3 {
+        font-size: 15px;
+    }
+
+    .token-text span {
+        font-size: 15px;
+    }
+
+    .label {
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    .label span {
+        font-size: 20px;
+    }
+
+    .profile-text h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .profile-span {
+        font-size: 18px;
+    }
+
+
+}
+
+@media (max-width:320px) {
+ 
+    .coming-soon-text {
+        font-size: 26px;
+    }
+    .faq .faq-list li {
+        padding: 15px 5px;
+    }
+    .faq-title h2 {
+        font-size: 25px;
+    }
+    .faq-list {
+        padding-top: 40px;
+    }
+    .faq .faq-list a {
+        width: 250px;
+    }
+    .faq .faq-list .icon-show, .faq .faq-list .icon-close {
+        right: -30px;
+        top: 0;
+    }
+    .owl-carousel .owl-prev {
+        left: 110px;
+    }
+
+    .owl-carousel .owl-next {
+        right: 110px;
+    }
+
+    .owl-image {
+        width: 285px !important;
+    }
+
+    
+
+    .slider-inner-img h3 {
+        padding-top: 5px;
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    
+
+    .slider-btn {
+        padding: 8px 8px;
+        width: 125px;
+        font-size: 12px;
+    }
+
+    .subtract-rectangle {
+        width: 295px;
+    }
+
+    .slider-inner-img p {
+        padding-top: 0px;
+        line-height: 16px;
+        margin-bottom: 0px;
+        font-size: 10px;
+    }
+
+    .item {
+        margin-left: 5px;
+    }
+
+    .small-rectangle-right img {
+        width: 45px;
+    }
+
+    .partner-inner-text img {
+        margin-bottom: 5px;
+        width: 95px;
+    }
+
+    .partner-inner-text {
+        left: 0px;
+        top: 20px;
+        padding: 0 10px;
+    }
+
+    .partner-inner-text h3 {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .partner-inner-text span {
+        font-size: 12px;
+    }
+
+    .stable-text p {
+        font-size: 14px;
+        padding-top: 5px;
+        line-height: 25px;
+    }
+
+    .input-line form {
+        width: 290px;
+    }
+
+    .input-line form input[type=email] {
+        font-size: 14px;
+        width: 290px;
+
+    }
+
+    .footer-right-input span {
+        font-family: var(--primary-font);
+        font-size: 18px;
+    }
+
+    .header-text h1 {
+        font-size: 24px;
+    }
+
+    .header-text h2 {
+        font-size: 45px;
+    }
+
+    .header-text p {
+        font-size: 11px;
+        max-width: 640px;
+    }
+
+    .purple-btn {
+        padding: 10px 10px;
+        font-size: 12px;
+    }
+
+    .works-line img {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .partner-data {
+        margin-top: 65px;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .subtract img {
+        width: 270px;
+    }
+
+    .pool-info-inner-text span {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .pool-info-inner-text p {
+        font-size: 20px;
+    }
+
+    .pool-info-inner-text {
+        top: 22px;
+        left: 70px;
+    }
+
+    .pools-text-inner p {
+        font-size: 13px;
+        padding-top: 10px;
+        line-height: 25px;
+    }
+
+    .profile-subtract-img img {
+        width: 270px;
+    }
+
+    .profile-info-inner-text span {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .profile-info-inner-text p {
+        font-size: 18px;
+    }
+
+    .profile-info-inner-text {
+        top: 20px;
+        left: 88px;
+    }
+
+ 
+
+    .token-text h3 {
+        font-size: 15px;
+    }
+
+    .token-text span {
+        font-size: 15px;
+    }
+
+    .label {
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    .label span {
+        font-size: 20px;
+    }
+
+    .profile-text h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .profile-span {
+        font-size: 18px;
+    }
+
+    .home-hero-section {
+        padding: 100px 12px 290px 12px;
+    }
+
+    .small-rectangle-right {
+        right: 0px;
+    }
+
+    .pool-info-inner-text-2 {
+        top: 20px;
+        left: 80px;
+    }
+
+    .pool-info-inner-text-3 {
+        top: 20px;
+        left: 92px;
+    }
+    
+
+}

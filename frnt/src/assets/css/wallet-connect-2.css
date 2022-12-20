@@ -1,0 +1,202 @@
+/* Fonts start */
+
+
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("assets/font/ProximaNova-Regular.ttf") format("TrueType"),
+        url("assets/font/ProximaNova-Regular.woff") format("woff");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("assets/font/ProximaNova-Semibold.ttf") format("TrueType"),
+        url("assets/font/ProximaNova-Semibold.woff") format("woff");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("assets/font/ProximaNova-Bold.ttf") format("TrueType"),
+        url("assets/font/ProximaNova-Bold.woff") format("woff");
+    font-weight: 700;
+}
+
+/* Fonts end */
+
+/* Root start */
+:root {
+    /* Font style */
+    --primary-font: 'Proxima Nova', sans-serif;
+    --black-color: #000000;
+    --white-color: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Root end */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: #08010E;
+    font-size: 16px;
+
+
+}
+
+.popup-6 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    padding: 25px;
+    background: #fff;
+    /* visibility: hidden; */
+    opacity: 1;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+.wallet-align {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: -50px;
+    left: 0;
+}
+
+.wallet-connect {
+    display: flex;
+    padding-right: 300px;
+}
+
+.wallet-connect h2 {
+    font-family: var(--primary-font);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding-left: 8px;
+    margin: 0;
+    color: white;
+}
+
+.desk-btn {
+    text-decoration: none;
+    padding: 15px 30px;
+    width: 270px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(100deg, #5312ED, #7B1DF4, #AD2CFD);
+    border-radius: 10px;
+    font-weight: 400;
+    font-family: var(--primary-font);
+    font-size: 20px;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+}
+.desk-btn:hover {
+    color: #fff;
+}
+
+.connect-btn {
+    position: relative;
+    background-image: linear-gradient(100deg, #5312ED, #7B1DF4, #AD2CFD);
+    width: 550px;
+    height: 70px;
+    border-radius: 10px;
+}
+
+.white-btn {
+    text-decoration: none;
+    padding: 15px 30px;
+    width: 270px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: 400;
+    font-family: var(--primary-font);
+    font-size: 20px;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+}
+
+.white-btn:hover {
+    color: #666;
+}
+
+.search-btn{
+    text-decoration: none;
+    padding: 15px 30px;
+    
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-image: linear-gradient(100deg, #5312ED, #7B1DF4, #AD2CFD);
+    border-radius: 10px;
+    font-weight: 400;
+    font-family: var(--primary-font);
+    font-size: 20px;
+    outline: none;
+    border: none;
+    
+}
+.search-btn img{
+    padding-right: 15px;
+}
+
+.praragraph p{
+    font-family: var(--primary-font);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding-left: 8px;
+    margin: 20px 0;
+    color: #666;
+    text-align: center;
+}
+.numbers {
+    margin-top: 330px;
+    text-align: center;
+}
+
+.one{
+    font-family: var(--primary-font);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #000;
+}
+.two{
+    font-family: var(--primary-font);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #666;
+    padding-left: 15px;
+}

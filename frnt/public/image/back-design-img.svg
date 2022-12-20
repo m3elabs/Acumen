@@ -1,0 +1,36 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_1110_123" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080">
+<rect width="1920" height="1080" fill="url(#paint0_linear_1110_123)" fill-opacity="0.2"/>
+</mask>
+<g mask="url(#mask0_1110_123)">
+<path d="M-1443.37 -869.187L2131.77 88.7686" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1491.34 -690.15L2083.79 267.805" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1539.31 -511.114L2035.82 446.842" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1587.28 -332.077L1987.86 625.878" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1635.26 -153.04L1939.88 804.915" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1683.23 25.9964L1891.9 983.952" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1731.2 205.033L1843.93 1162.99" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1779.18 384.07L1795.96 1342.02" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1827.15 563.106L1747.99 1521.06" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M-1875.12 742.143L1700.01 1700.1" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M392.172 -569.246L-136.028 1402.02" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M213.133 -617.218L-315.067 1354.05" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M34.1016 -665.191L-494.098 1306.08" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M2179.74 -90.2679L1651.54 1881" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M2000.7 -138.241L1472.5 1833.03" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M1821.67 -186.213L1293.47 1785.05" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M1642.63 -234.186L1114.43 1737.08" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M1463.59 -282.159L935.394 1689.11" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M1284.56 -330.131L756.363 1641.14" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M1105.52 -378.104L577.324 1593.16" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M926.484 -426.077L398.285 1545.19" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M747.453 -474.05L219.253 1497.22" stroke="#9F26DD" stroke-opacity="0.1"/>
+<path d="M568.414 -522.022L40.2143 1449.25" stroke="#9F26DD" stroke-opacity="0.1"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_1110_123" x1="960" y1="0" x2="960" y2="960" gradientUnits="userSpaceOnUse">
+<stop stop-color="#08010E"/>
+<stop offset="1" stop-color="#08010E" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

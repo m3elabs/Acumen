@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { TAI64 } from "tai64";
 import { Wallet, BN, bn } from "fuels";
-import "./App.css";
+
 
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
 import Home from './home';
 import Pools from './pools';
+import Config from "./Config";
 
   
 function App() {
@@ -16,6 +17,7 @@ return (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/pools/:id' element={<Pools />} />
+      <Route path='/config' element={<Config />} />
     
     
     </Routes>
