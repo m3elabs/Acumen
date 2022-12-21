@@ -1,6 +1,7 @@
 import "../assets/css/app-page.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/style.css";
+import "../assets/css/responsive.css";
 
 //TODO: Fix CSS
 
@@ -11,7 +12,7 @@ function Navbar() {
         <a href="">
           <span className="logo navLogo">
             <a href="index">
-              <img src={process.env.PUBLIC_URL + "/image/logo.png"} alt="" />
+              <img src={process.env.PUBLIC_URL + "/image/logo.png"} alt=""  width="150px"/>
             </a>
           </span>
         </a>
@@ -31,7 +32,7 @@ function Navbar() {
               <a href="faq.php">FAQ </a>
             </li>
             <li>
-              <a href="https://app.atrix.finance/liquidity/8SQCVgTFJPWTrRJzF5nnPoaRff6vvqAqm1kxZaeFxXc2/deposit">
+              <a href="">
                 Staking
               </a>
             </li>
