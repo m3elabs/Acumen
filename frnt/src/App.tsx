@@ -6,16 +6,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./home";
 import Pools from "./pools";
 import Config from "./Config";
+import Navbar from "./includes/navbar";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pools/:id" element={<Pools />} />
-        <Route path="/config" element={<Config />} />
-      </Routes>
-    </Router>
+    <>
+      <Navbar />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pools/:id" element={<Pools />} />
+          <Route path="/config" element={<Config />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
