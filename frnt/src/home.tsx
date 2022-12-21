@@ -449,7 +449,36 @@ function Home() {
                             </th>
                           </tr>
                         </thead>
-                        <tbody id="listPoolBorrower"></tbody>
+                        <tbody id="listPoolBorrower">
+                        {loanPoolData.map((pool) => (
+                            <tr className="odd">
+                              <td className="">
+                                <div className="d-flex align-items-center">
+                                  <div className="borrower-pool-img-wrap profile-img me-2">
+                                    <img
+                                      src={
+                                        process.env.PUBLIC_URL +
+                                        "/image/wallet_icon.svg"
+                                      }
+                                      alt=""
+                                    />
+                                  </div>
+                                  {pool.poolName}
+                                </div>
+                              </td>
+                              <td>{pool.apy.toString()}%</td>
+                              <td>Duration</td>
+                              <td>
+                                <strong id="balance-display-${i}">
+                                  Test Token
+                                </strong>
+                              </td>
+                              <td>
+                                {isOpenStaking(pool.depositLimiters.endTime)}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
                       </table>
                     </div>
                   </div>
