@@ -177,7 +177,6 @@ export function unixToTai64(unixTime: number) {
   const valueString = value.toString();
   const valueDecimal = parseInt(valueString, 16);
   return valueDecimal;
-
 }
 
 //function used to create a new pool
@@ -199,15 +198,19 @@ export async function createPool(e: any) {
     isStaking = false;
   }
 
+  const startTime = unixToTai64(Number(data.get("startTime")));
+  const endTime = unixToTai64(Number(data.get("endTime")));
+  const duration = unixToTai64(Number(data.get("duration")));
+
   const poolId = await contract.functions
     .create_pool(
       isStaking,
       String(data.get("poolName")),
       new BN(Number(data.get("apy"))),
       qrtPayout,
-      new BN(Number(data.get("duration"))),
-      new BN(Number(data.get("startTime"))),
-      new BN(Number(data.get("endTime"))),
+      new BN(31556926),
+      new BN(1671773603),
+      new BN(	1671914895),
       new BN(Number(data.get("maxUtilization"))),
       bn.parseUnits(String(data.get("capacity"))),
       new BN(Number(data.get("limitPerPerson")))
@@ -216,5 +219,11 @@ export async function createPool(e: any) {
     .call();
 
   console.log("Sent to the chain", poolId);
-  
+
+ 
+  // console.log((startTime), endTime, duration);
+
+  // 4611686020099161000
+  // 4611686020099284985
+  // 9007199254740992
 }

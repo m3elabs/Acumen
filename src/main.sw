@@ -49,6 +49,7 @@ use std::{
     },
     token::*,
     u256::U256,
+    u128::U128
 };
 
 const TEST_ETH: b256 = 0x0000000000000000000000000000000000000000000000000000000000000000;
@@ -427,9 +428,9 @@ impl AcumenCore for Contract {
         pool_name: str[15],
         apy: u64,
         qrt_payout: bool,
-        duration: u64,
-        start_time: u64,
-        end_time: u64,
+        duration: u128,
+        start_time: u128,
+        end_time: u128,
         max_utilization: u64,
         capacity: u64,
         limit_per_user: u64,
