@@ -19,7 +19,6 @@ import {
   createPool,
   deposit,
   editPool,
-  unixToTai64,
   wallet1,
   withdraw,
 } from "./utils";
@@ -151,6 +150,8 @@ function Home() {
   //   </div>
 
   // );
+
+
   return (
     <main className="main" id="blur">
       <section className="hero-section position-relative">
@@ -362,7 +363,7 @@ function Home() {
                                 </div>
                               </td>
                               <td>{pool.apy.toString()}%</td>
-                              <td>Duration</td>
+                              <td>{pool.depositLimiters.duration.toString()} Months</td>
                               <td>
                                 <strong id="balance-display-${i}">
                                   Test Token

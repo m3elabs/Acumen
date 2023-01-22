@@ -1,12 +1,11 @@
 import { BN, bn, Wallet } from "fuels";
 import { useEffect, useState } from "react";
-import { TAI64 } from "tai64";
-import { AcumenAbi__factory } from "./contracts";
+import { AcumenAbi__factory } from "./contracts/factories/AcumenAbi__factory";
 
 // The ID of the contract deployed to our local node.
 // The contract ID is displayed when the `forc deploy` command is run.
 export const CONTRACT_ID =
-  "0xaad4b57777fb4b60725efd4000fd2c06fdda4f2bbcca8ad218ff39e84137c79e";
+  "0x4ee4c29398955f571a33f0c418812d3e7f2dc055ab1dfa862db0c000ad12786f";
 
 // The private key of the `owner` in chainConfig.json.
 // This enables us to have an account with an initial balance.
@@ -54,7 +53,7 @@ export async function withdraw(e: any) {
   e.preventDefault();
   const data = new FormData(e.target);
   const withdraw = await contract.functions
-    .withdraw(bn(String(data.get("PoolID"))), bn(String(data.get("Amount"))))
+    .withdraw(bn(String(data.get("PoolID"))), bn(.5))
     .txParams({ gasPrice: 1 })
     .call();
 
@@ -162,7 +161,6 @@ export async function editPool(e: any) {
     )
     .txParams({ gasPrice: 1 })
     .call();
-  console.log(apple);
 }
 
 // function to get the contract ID
@@ -172,12 +170,12 @@ export const checkId = async () => {
 };
 
 //create a function to convert unix time to TAI64
-export function unixToTai64(unixTime: number) {
-  const value = TAI64.fromUnix(unixTime);
-  const valueString = value.toString();
-  const valueDecimal = parseInt(valueString, 16);
-  return valueDecimal;
-}
+// export function unixToTai64(unixTime: number) {
+//   const value = TAI64.fromUnix(unixTime);
+//   const valueString = value.toString();
+//   const valueDecimal = parseInt(valueString, 16);
+//   return valueDecimal;
+// }
 
 //function used to create a new pool
 export async function createPool(e: any) {
@@ -198,19 +196,13 @@ export async function createPool(e: any) {
     isStaking = false;
   }
 
-  const startTime = unixToTai64(Number(data.get("startTime")));
-  const endTime = unixToTai64(Number(data.get("endTime")));
-  const duration = unixToTai64(Number(data.get("duration")));
-
   const poolId = await contract.functions
     .create_pool(
       isStaking,
       String(data.get("poolName")),
       new BN(Number(data.get("apy"))),
       qrtPayout,
-      new BN(31556926),
-      new BN(1671773603),
-      new BN(	1671914895),
+      new BN(Number(data.get("duration"))),
       new BN(Number(data.get("maxUtilization"))),
       bn.parseUnits(String(data.get("capacity"))),
       new BN(Number(data.get("limitPerPerson")))
@@ -220,7 +212,6 @@ export async function createPool(e: any) {
 
   console.log("Sent to the chain", poolId);
 
- 
   // console.log((startTime), endTime, duration);
 
   // 4611686020099161000

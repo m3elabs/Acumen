@@ -16,7 +16,6 @@ import {
   createPool,
   deposit,
   editPool,
-  unixToTai64,
   wallet1,
   withdraw,
 } from "./utils";
@@ -35,7 +34,7 @@ function Config() {
       .get_user_stakes_info_per_pool(bn("0"))
       .txParams({ gasPrice: 1 })
       .call();
-    console.log(value);
+    console.log(Number(value.staking.entries));
   }
 
   const [loanPoolData, setLoanPoolData] = useState<PoolInfoOutput[]>([]);
@@ -62,6 +61,8 @@ function Config() {
       }
     }
   }
+
+  console.log()
 
   function isOpenStaking(endDate: BigNumberish) {
     //get today's date in tai64
@@ -176,17 +177,7 @@ function Config() {
               className="App-inputs"
             ></input>
 
-            <input
-              name="startTime"
-              placeholder="startTime"
-              className="App-inputs"
-            ></input>
-
-            <input
-              name="endTime"
-              placeholder="endTime"
-              className="App-inputs"
-            ></input>
+        
 
             <input
               name="maxUtilization"

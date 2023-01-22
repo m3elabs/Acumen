@@ -17,7 +17,6 @@ use std::{
         StorageVec,
     },
     token::*,
-    u128::U128
 };
 
 pub struct StakingTransaction {
@@ -43,9 +42,10 @@ pub struct Transaction {
 }
 
 pub struct DepositLimiters {
-    duration: u128,
-    startTime: u128, // >>Deposits<< Start Time
-    endTime: u128, // >>Deposits<< End Time
+    startTime: u64, // >>Deposits & Pool << Start Time
+    duration: u64,
+    gracePeriod: u64, // >>Time to deposit before lock<< 
+    endTime: u64, // >>Pool<< End Time
     limitPerUser: u64,
     capacity: u64,
     maxUtilization: u64,
@@ -114,7 +114,7 @@ abi AcumenCore {
     fn whitelist(poolId: u64, status: bool);
 
     #[storage(read, write)]
-    fn create_pool(pool_is_staking: bool, pool_name: str[15], apy: u64, qrt_payout: bool, duration: u128, start_time: u128, end_time: u128, max_utilization: u64, capacity: u64, limit_per_user: u64) -> u64;
+    fn create_pool(pool_is_staking: bool, pool_name: str[15], apy: u64, qrt_payout: bool, duration: u64, max_utilization: u64, capacity: u64, limit_per_user: u64) -> u64;
 
     #[storage(read, write)]
     fn edit_pool(pool_id: u64, pool_name: str[15], pause: bool, apy: u32, max_utilization: u64, capacity: u64);

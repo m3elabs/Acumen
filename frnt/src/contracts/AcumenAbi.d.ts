@@ -24,8 +24,9 @@ export type FundsInput = { balance: BigNumberish; loanedBalance: BigNumberish };
 export type FundsOutput = { balance: BN; loanedBalance: BN };
 
 export type DepositLimitersInput = {
-  duration: BigNumberish;
   startTime: BigNumberish;
+  duration: BigNumberish;
+  gracePeriod: BigNumberish;
   endTime: BigNumberish;
   limitPerUser: BigNumberish;
   capacity: BigNumberish;
@@ -33,8 +34,9 @@ export type DepositLimitersInput = {
 };
 
 export type DepositLimitersOutput = {
-  duration: BN;
   startTime: BN;
+  duration: BN;
+  gracePeriod: BN;
   endTime: BN;
   limitPerUser: BN;
   capacity: BN;
@@ -161,8 +163,6 @@ interface AcumenAbiInterface extends Interface {
       BigNumberish,
       BigNumberish,
       BigNumberish,
-      BigNumberish,
-      BigNumberish,
       BigNumberish
     ]
   ): Uint8Array;
@@ -284,8 +284,6 @@ export class AcumenAbi extends Contract {
         apy: BigNumberish,
         qrt_payout: boolean,
         duration: BigNumberish,
-        start_time: BigNumberish,
-        end_time: BigNumberish,
         max_utilization: BigNumberish,
         capacity: BigNumberish,
         limit_per_user: BigNumberish

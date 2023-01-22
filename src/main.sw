@@ -31,7 +31,7 @@ use interface::{
 use std::{
     address::Address,
     auth::msg_sender,
-    block::timestamp,
+    block::timestamp as now,
     call_frames::{
         contract_id,
         msg_asset_id,
@@ -48,8 +48,6 @@ use std::{
         StorageVec,
     },
     token::*,
-    u256::U256,
-    u128::U128
 };
 
 const TEST_ETH: b256 = 0x0000000000000000000000000000000000000000000000000000000000000000;
@@ -97,7 +95,7 @@ fn transfer_rewards(pool_id: u64, duration: u64, amount: u64) {
 
 #[storage(read)]
 fn calculate_interest(pool_id: u64, amount: u64) -> u64 {
-    let ts: u64 = timestamp();
+    let ts: u64 = now();
     let pool_info: PoolInfo = storage.allPools.get(pool_id).unwrap();
     let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
     let mut reward_calculation_start_time: u64 = 0;
@@ -126,10 +124,10 @@ fn calculate_interest(pool_id: u64, amount: u64) -> u64 {
 
 fn calculate_percentage(whole: u64, percent: u64) -> u64 {
     let zero: u64 = 0;
-    if (percent == 0) {
+    if (percent == zero) {
         return 0
     };
-    let percentage = (U256::from((0, 0, 0, whole)) * U256::from((0, 0, 0, 100)) / U256::from((0, 0, 0, percent))).as_u64().unwrap();
+    let percentage:u64 = (whole / percent);
     return percentage;
 }
 
@@ -157,7 +155,7 @@ fn emergency_withdraw(pool_id: u64, amount: u64) {
 
     pool.funds.balance = pool.funds.balance - amount;
 
-    user_info.staking.withdrawTime = timestamp();
+    user_info.staking.withdrawTime = now();
     user_info.staking.balance = user_info.staking.balance - amount;
     require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
 
@@ -236,11 +234,11 @@ impl AcumenCore for Contract {
 
         let new_transact: Transaction = Transaction {
             staking: StakingTransaction {
-                balance: 0,
-                time: 0,
+                balance: amount,
+                time: now(),
                 user: msg_sender().unwrap(),
                 entries: 1,
-                poolUser: false,
+                poolUser: true,
                 withdrawTime: 0,
                 rewardsPaid: 0,
             },
@@ -253,7 +251,7 @@ impl AcumenCore for Contract {
         };
 
         user_info.staking.balance = user_info.staking.balance + amount;
-        user_info.staking.time = timestamp();
+        user_info.staking.time = now();
         user_info.staking.user = msg_sender().unwrap();
         user_info.staking.entries = user_info.staking.entries + 1;
 
@@ -271,7 +269,7 @@ impl AcumenCore for Contract {
         };
 
         if (pool.poolTypeIsStaking == true) {
-            require(timestamp() >= pool.depositLimiters.startTime && timestamp() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
+            require(now() >= pool.depositLimiters.startTime && now() <= pool.depositLimiters.endTime, InteractionErrors::DepositsNotAllowedRightNow)
         };
         force_transfer_to_contract(amount, pool.tokenInfo, contract_id());
 
@@ -292,13 +290,14 @@ impl AcumenCore for Contract {
         let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
-        if (timestamp() < pool.depositLimiters.endTime) {
+        if (now() < pool.depositLimiters.startTime + pool.depositLimiters.gracePeriod)
+        {
             emergency_withdraw(pool_id, amount);
             return;
         }
 
         require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
-        require(timestamp() >= pool.depositLimiters.endTime + pool.depositLimiters.duration, InteractionErrors::WithdrawingBeforeExpiration);
+        require(now() >= pool.depositLimiters.endTime + pool.depositLimiters.duration, InteractionErrors::WithdrawingBeforeExpiration);
         require(pool.funds.balance >= pool.funds.loanedBalance + amount, InteractionErrors::FundUtilizationTooHigh);
 
         let projected_utilization: u64 = calculate_percentage(pool.funds.loanedBalance, (pool.funds.balance - amount));
@@ -307,7 +306,7 @@ impl AcumenCore for Contract {
         user_info.staking.balance = user_info.staking.balance - amount;
 
         transfer(amount, pool.tokenInfo, msg_sender().unwrap());
-        transfer_rewards(pool_id, timestamp() - pool.depositLimiters.endTime, amount);
+        transfer_rewards(pool_id, now() - pool.depositLimiters.endTime, amount);
 
         if (user_info.staking.balance == 0) {
             user_info.staking.poolUser = false;
@@ -346,7 +345,7 @@ impl AcumenCore for Contract {
         pool.funds.loanedBalance = pool.funds.loanedBalance + amount;
 
         user_info.borrowing.balance = user_info.borrowing.balance + amount;
-        user_info.borrowing.time = timestamp();
+        user_info.borrowing.time = now();
         user_info.borrowing.user = msg_sender().unwrap();
         user_info.borrowing.poolUser = true;
 
@@ -378,7 +377,7 @@ impl AcumenCore for Contract {
 
         user_info.borrowing.balance = user_info.borrowing.balance - amount;
 
-        user_info.borrowing.time = timestamp();
+        user_info.borrowing.time = now();
 
         if (user_info.borrowing.balance == 0) {
             user_info.borrowing.poolUser = false;
@@ -404,9 +403,9 @@ impl AcumenCore for Contract {
         let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
         require(pool.quarterlyPayout == true, InteractionErrors::QuarterlyPayoutDisabled);
         require(pool.poolTypeIsStaking == true, InteractionErrors::WrongPoolType);
-        require(timestamp() > pool.depositLimiters.endTime, InteractionErrors::ClaimsNotAllowedRightNow);
+        require(now() > pool.depositLimiters.endTime, InteractionErrors::ClaimsNotAllowedRightNow);
 
-        let mut time_diff: u64 = timestamp() - pool.depositLimiters.endTime;
+        let mut time_diff: u64 = now() - pool.depositLimiters.endTime;
         if (time_diff > pool.depositLimiters.duration) {
             time_diff = pool.depositLimiters.duration;
         };
@@ -428,9 +427,7 @@ impl AcumenCore for Contract {
         pool_name: str[15],
         apy: u64,
         qrt_payout: bool,
-        duration: u128,
-        start_time: u128,
-        end_time: u128,
+        duration: u64,
         max_utilization: u64,
         capacity: u64,
         limit_per_user: u64,
@@ -457,9 +454,10 @@ impl AcumenCore for Contract {
             },
             pool_id: id,
             depositLimiters: DepositLimiters {
+                startTime: now(),
                 duration: duration,
-                startTime: start_time,
-                endTime: end_time,
+                gracePeriod: 14 * DAY,
+                endTime: now() + (duration * MONTH),
                 limitPerUser: limit_per_user,
                 capacity: capacity,
                 maxUtilization: max_utilization,
@@ -497,8 +495,9 @@ impl AcumenCore for Contract {
             },
             pool_id: pool.pool_id,
             depositLimiters: DepositLimiters {
-                duration: pool.depositLimiters.duration,
                 startTime: pool.depositLimiters.startTime,
+                duration:pool.depositLimiters.duration,
+                gracePeriod: pool.depositLimiters.gracePeriod,
                 endTime: pool.depositLimiters.endTime,
                 limitPerUser: pool.depositLimiters.limitPerUser,
                 capacity: capacity,

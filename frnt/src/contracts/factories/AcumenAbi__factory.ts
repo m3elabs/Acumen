@@ -70,14 +70,6 @@ const _abi = [
       },
       {
         type: "u64",
-        name: "start_time",
-      },
-      {
-        type: "u64",
-        name: "end_time",
-      },
-      {
-        type: "u64",
         name: "max_utilization",
       },
       {
@@ -243,11 +235,15 @@ const _abi = [
             components: [
               {
                 type: "u64",
+                name: "startTime",
+              },
+              {
+                type: "u64",
                 name: "duration",
               },
               {
                 type: "u64",
-                name: "startTime",
+                name: "gracePeriod",
               },
               {
                 type: "u64",

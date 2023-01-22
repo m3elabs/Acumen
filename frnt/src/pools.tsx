@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AcumenAbi__factory } from "./contracts";
+import { AcumenAbi__factory } from "./contracts/factories/AcumenAbi__factory";
 import {
   borrowTransaction,
   CONTRACT_ID,
