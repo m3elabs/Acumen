@@ -30,7 +30,10 @@ use interface::{
 
 use std::{
     address::Address,
-    auth::msg_sender,
+    auth::{
+        AuthError,
+        msg_sender,
+    },
     block::timestamp as now,
     call_frames::{
         contract_id,
@@ -93,6 +96,7 @@ fn transfer_rewards(pool_id: u64, duration: u64, amount: u64) {
     // })
 }
 
+
 #[storage(read)]
 fn calculate_interest(pool_id: u64, amount: u64) -> u64 {
     let ts: u64 = now();
@@ -127,7 +131,7 @@ fn calculate_percentage(whole: u64, percent: u64) -> u64 {
     if (percent == zero) {
         return 0
     };
-    let percentage:u64 = (whole / percent);
+    let percentage: u64 = (whole / percent);
     return percentage;
 }
 
@@ -159,11 +163,13 @@ fn emergency_withdraw(pool_id: u64, amount: u64) {
     user_info.staking.balance = user_info.staking.balance - amount;
     require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
 
-    let caller: Identity = msg_sender().unwrap();
-    let recepient: Address = match caller {
-        Identity::Address(address) => address,
-        _ => revert(0),
-    };
+    let mut recepient: Address = Address::from(0x0000000000000000000000000000000000000000000000000000000000000000);
+    let sender: Result<Identity, AuthError> = msg_sender();
+    if let Identity::Address(address) = sender.unwrap() {
+      recepient = address
+    } else {
+        revert(0);
+    }
 
     transfer_to_address(amount, pool.tokenInfo, recepient);
 
@@ -496,7 +502,7 @@ impl AcumenCore for Contract {
             pool_id: pool.pool_id,
             depositLimiters: DepositLimiters {
                 startTime: pool.depositLimiters.startTime,
-                duration:pool.depositLimiters.duration,
+                duration: pool.depositLimiters.duration,
                 gracePeriod: pool.depositLimiters.gracePeriod,
                 endTime: pool.depositLimiters.endTime,
                 limitPerUser: pool.depositLimiters.limitPerUser,

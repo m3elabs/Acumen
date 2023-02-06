@@ -29,13 +29,13 @@ function Config() {
     console.log(value);
   }
 
-  async function userDetails() {
-    const { value } = await contract.functions
-      .get_user_stakes_info_per_pool(bn("0"))
-      .txParams({ gasPrice: 1 })
-      .call();
-    console.log(Number(value.staking.entries));
-  }
+  // async function userDetails() {
+  //   const { value } = await contract.functions
+  //     .get_user_stakes_info_per_pool(bn("0"))
+  //     .txParams({ gasPrice: 1 })
+  //     .call();
+  //   console.log(Number(value.staking.balance));
+  // }
 
   const [loanPoolData, setLoanPoolData] = useState<PoolInfoOutput[]>([]);
   const [stakingPoolData, setStakingPoolData] = useState<PoolInfoOutput[]>([]);
@@ -83,15 +83,16 @@ function Config() {
   useEffect(() => {
     // checkId()
     // allPools();
-    userDetails();
+    // userDetails();
     //poolDetails();
     // totalDeposits();
-    allPoolDetails();
+    // allPoolDetails();
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
+        <br/>   <br/>   <br/>   <br/> 
         <div className="App-items">
           <p>Deposit</p>
           <form onSubmit={deposit}>

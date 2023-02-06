@@ -1,11 +1,11 @@
-import { BN, bn, Wallet } from "fuels";
+import {  bn, Wallet } from "fuels";
 import { useEffect, useState } from "react";
 import { AcumenAbi__factory } from "./contracts/factories/AcumenAbi__factory";
 
 // The ID of the contract deployed to our local node.
 // The contract ID is displayed when the `forc deploy` command is run.
 export const CONTRACT_ID =
-  "0x4ee4c29398955f571a33f0c418812d3e7f2dc055ab1dfa862db0c000ad12786f";
+  "0x57b64d6239c91eac78a78f71dc45df3262538c041834bdc961df90cce3de8dcb";
 
 // The private key of the `owner` in chainConfig.json.
 // This enables us to have an account with an initial balance.
@@ -29,10 +29,11 @@ export const address =
 export async function deposit(e: any) {
   e.preventDefault();
   const data = new FormData(e.target);
+  console.log(bn(Number(data.get("Amount"))).toNumber())
   const deposit = await contract.functions
-    .deposit(bn(String(data.get("PoolID"))), bn(String(data.get("Amount"))))
+    .deposit(bn(String(data.get("PoolID"))), bn(Number(data.get("Amount"))))
     .txParams({ gasPrice: 1 })
-    .callParams({ forward: [bn(String(data.get("Amount"))), address] })
+    .callParams({ forward: [bn(Number(data.get("Amount")) * (10 ** 8)), address] })
     .call();
 
   console.log("transaction", deposit);
@@ -52,8 +53,9 @@ export async function depositTransaction(amount: any, pool_id: any) {
 export async function withdraw(e: any) {
   e.preventDefault();
   const data = new FormData(e.target);
+  console.log(bn(Number(data.get("Amount"))).toNumber())
   const withdraw = await contract.functions
-    .withdraw(bn(String(data.get("PoolID"))), bn(.5))
+    .withdraw(bn(String(data.get("PoolID"))), bn(Number(data.get("Amount")) * (10 ** 3)))
     .txParams({ gasPrice: 1 })
     .call();
 
@@ -155,9 +157,9 @@ export async function editPool(e: any) {
       Number(data.get("poolId")),
       String(data.get("poolName")),
       paused,
-      new BN(Number(data.get("apy"))),
-      new BN(Number(data.get("maxUtilization"))),
-      new BN(Number(data.get("capacity")))
+      bn(Number(data.get("apy"))),
+      bn(Number(data.get("maxUtilization"))),
+      bn(Number(data.get("capacity")))
     )
     .txParams({ gasPrice: 1 })
     .call();
@@ -200,12 +202,12 @@ export async function createPool(e: any) {
     .create_pool(
       isStaking,
       String(data.get("poolName")),
-      new BN(Number(data.get("apy"))),
+      bn(Number(data.get("apy"))),
       qrtPayout,
-      new BN(Number(data.get("duration"))),
-      new BN(Number(data.get("maxUtilization"))),
+      bn(Number(data.get("duration"))),
+      bn(Number(data.get("maxUtilization"))),
       bn.parseUnits(String(data.get("capacity"))),
-      new BN(Number(data.get("limitPerPerson")))
+      bn(Number(data.get("limitPerPerson")))
     )
     .txParams({ gasPrice: 1 })
     .call();
