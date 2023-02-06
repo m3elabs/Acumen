@@ -90,7 +90,7 @@ function Config() {
   }, []);
 
   return (
-    <div className="App">
+    <div style={{color: "white"}} className="App">
       <header className="App-header">
         <br/>   <br/>   <br/>   <br/> 
         <div className="App-items">
