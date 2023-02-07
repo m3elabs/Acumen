@@ -5,7 +5,7 @@ import { AcumenAbi__factory } from "./contracts/factories/AcumenAbi__factory";
 // The ID of the contract deployed to our local node.
 // The contract ID is displayed when the `forc deploy` command is run.
 export const CONTRACT_ID =
-  "0x57b64d6239c91eac78a78f71dc45df3262538c041834bdc961df90cce3de8dcb";
+  "0x1c94055e6b81d8feb32e247da12a799885bcfb78ca5ff43b744b919721dc378c";
 
 // The private key of the `owner` in chainConfig.json.
 // This enables us to have an account with an initial balance.
@@ -55,7 +55,7 @@ export async function withdraw(e: any) {
   const data = new FormData(e.target);
   console.log(bn(Number(data.get("Amount"))).toNumber())
   const withdraw = await contract.functions
-    .withdraw(bn(String(data.get("PoolID"))), bn(Number(data.get("Amount")) * (10 ** 3)))
+    .withdraw(bn(String(data.get("PoolID"))), bn(Number(data.get("Amount")) * (10 ** 8)))
     .txParams({ gasPrice: 1 })
     .call();
 

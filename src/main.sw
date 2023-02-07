@@ -3,6 +3,9 @@ contract;
 dep interface;
 dep errors;
 dep events;
+dep numbers;
+
+use numbers::*;
 
 use events::{
     BorrowedEvent,
@@ -50,11 +53,15 @@ use std::{
         StorageMap,
         StorageVec,
     },
+    u128::U128,
     token::*,
+    
 };
 
 const TEST_ETH: b256 = 0x0000000000000000000000000000000000000000000000000000000000000000;
 const BASE_TOKEN: ContractId = ContractId::from(TEST_ETH);
+
+const SCALE_18: u64 = 1_000_000_000_000_000_000; // 1e18
 
 const DAY: u64 = 86400;
 const MONTH: u64 = 2629743;
@@ -154,14 +161,24 @@ fn get_pool_utilization(pool_id: u64) -> u64 {
 
 #[storage(read, write)]
 fn emergency_withdraw(pool_id: u64, amount: u64) {
+
+    
+
     let mut pool: PoolInfo = storage.allPools.get(pool_id).unwrap();
     let mut user_info: Transaction = storage.userInfoPerPool.get((msg_sender().unwrap(), pool_id));
 
-    pool.funds.balance = pool.funds.balance - amount;
+    let balance = U128::from_u64(pool.funds.balance) - U128::from_u64(amount) / U128::from_u64(SCALE_18);
+
+    pool.funds.balance = balance.as_u64().unwrap();
 
     user_info.staking.withdrawTime = now();
-    user_info.staking.balance = user_info.staking.balance - amount;
-    require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
+
+    let user_balance = U128::from_u64(user_info.staking.balance) - U128::from_u64(amount) / U128::from_u64(SCALE_18);
+
+    user_info.staking.balance = user_balance.as_u64().unwrap();
+
+    //TODO: check and fix this part
+    //require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
 
     let mut recepient: Address = Address::from(0x0000000000000000000000000000000000000000000000000000000000000000);
     let sender: Result<Identity, AuthError> = msg_sender();
@@ -171,14 +188,24 @@ fn emergency_withdraw(pool_id: u64, amount: u64) {
         revert(0);
     }
 
-    transfer_to_address(amount, pool.tokenInfo, recepient);
+  
+
+    let transfer_amount: U128 = U128::from_u64(amount);
+
+    let final_amount = transfer_amount.as_u64().unwrap();
+
+    transfer_to_address(final_amount, pool.tokenInfo, recepient);
 
     if (user_info.staking.balance == 0) {
         user_info.staking.poolUser = false;
     };
 
+
     let fetch_deposits: u64 = storage.totalDeposits.get(msg_sender().unwrap());
-    storage.totalDeposits.insert(msg_sender().unwrap(), fetch_deposits - amount);
+
+    let totalDeposits = U128::from_u64(fetch_deposits) - U128::from_u64(amount) / U128::from_u64(SCALE_18);
+
+    storage.totalDeposits.insert(msg_sender().unwrap(), totalDeposits.as_u64().unwrap());
 
     // log(EmergencyWithdrawEvent {
     //     address: msg_sender().unwrap(),
@@ -302,27 +329,27 @@ impl AcumenCore for Contract {
             return;
         }
 
-        require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
-        require(now() >= pool.depositLimiters.endTime + pool.depositLimiters.duration, InteractionErrors::WithdrawingBeforeExpiration);
-        require(pool.funds.balance >= pool.funds.loanedBalance + amount, InteractionErrors::FundUtilizationTooHigh);
+        // require(amount <= user_info.staking.balance, InteractionErrors::MoreThanUserDeposited);
+        // require(now() >= pool.depositLimiters.endTime + pool.depositLimiters.duration, InteractionErrors::WithdrawingBeforeExpiration);
+        // require(pool.funds.balance >= pool.funds.loanedBalance + amount, InteractionErrors::FundUtilizationTooHigh);
 
-        let projected_utilization: u64 = calculate_percentage(pool.funds.loanedBalance, (pool.funds.balance - amount));
-        require(projected_utilization < pool.depositLimiters.maxUtilization, InteractionErrors::PastRecommendedUtilization);
+        // let projected_utilization: u64 = calculate_percentage(pool.funds.loanedBalance, (pool.funds.balance - amount));
+        // require(projected_utilization < pool.depositLimiters.maxUtilization, InteractionErrors::PastRecommendedUtilization);
 
-        user_info.staking.balance = user_info.staking.balance - amount;
+        // user_info.staking.balance = user_info.staking.balance - amount;
 
-        transfer(amount, pool.tokenInfo, msg_sender().unwrap());
-        transfer_rewards(pool_id, now() - pool.depositLimiters.endTime, amount);
+        // transfer(amount, pool.tokenInfo, msg_sender().unwrap());
+        // transfer_rewards(pool_id, now() - pool.depositLimiters.endTime, amount);
 
-        if (user_info.staking.balance == 0) {
-            user_info.staking.poolUser = false;
-        }
+        // if (user_info.staking.balance == 0) {
+        //     user_info.staking.poolUser = false;
+        // }
 
-        pool.funds.balance = pool.funds.balance - amount;
-        let fetch_deposits: u64 = storage.totalDeposits.get(msg_sender().unwrap());
-        storage.totalDeposits.insert(msg_sender().unwrap(), fetch_deposits - amount);
-        storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
-        storage.allPools.set(pool_id, pool);
+        // pool.funds.balance = pool.funds.balance - amount;
+        // let fetch_deposits: u64 = storage.totalDeposits.get(msg_sender().unwrap());
+        // storage.totalDeposits.insert(msg_sender().unwrap(), fetch_deposits - amount);
+        // storage.userInfoPerPool.insert((msg_sender().unwrap(), pool_id), user_info);
+        // storage.allPools.set(pool_id, pool);
 
         // log(WithdrawEvent {
         //     address: msg_sender().unwrap(),
