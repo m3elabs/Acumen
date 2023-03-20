@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Provider, BaseWalletLocked, AbstractAddress } from "fuels";
+import type { Provider, Account, AbstractAddress } from "fuels";
 import { Interface, Contract } from "fuels";
 import type { AcumenAbi, AcumenAbiInterface } from "../AcumenAbi";
 const _abi = [
@@ -505,8 +505,8 @@ export class AcumenAbi__factory {
   }
   static connect(
     id: string | AbstractAddress,
-    walletOrProvider: BaseWalletLocked | Provider
+    accountOrProvider: Account | Provider
   ): AcumenAbi {
-    return new Contract(id, _abi, walletOrProvider) as unknown as AcumenAbi;
+    return new Contract(id, _abi, accountOrProvider) as unknown as AcumenAbi;
   }
 }

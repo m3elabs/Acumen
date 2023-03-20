@@ -5,12 +5,12 @@ import { AcumenAbi__factory } from "./contracts/factories/AcumenAbi__factory";
 // The ID of the contract deployed to our local node.
 // The contract ID is displayed when the `forc deploy` command is run.
 export const CONTRACT_ID =
-  "0x1c94055e6b81d8feb32e247da12a799885bcfb78ca5ff43b744b919721dc378c";
+  "0x0dbd80aa82b6ea76478cf0386f5e7f5e8781cad04eab9491b13c25de4c484a6a";
 
 // The private key of the `owner` in chainConfig.json.
 // This enables us to have an account with an initial balance.
 export const WALLET_SECRET =
-  "2ef4b3f83de6d32c9e31c796e3175fc48eeb875d9824782d7b8d56db8a87ef2f";
+  "01cb41149d240a6793240134ecc29ff6a43dbd1ab411f678011a6b3191b5190b";
 
 // Create a "Wallet" using the private key above.
 export const wallet1 = Wallet.fromPrivateKey(
