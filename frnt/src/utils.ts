@@ -15,7 +15,7 @@ export const WALLET_SECRET =
 // Create a "Wallet" using the private key above.
 export const wallet1 = Wallet.fromPrivateKey(
   WALLET_SECRET,
-  "https://node-beta-2.fuel.network/graphql"
+  "https://beta-3.fuel.network/graphql"
 );
 
 // Connect a "Contract" instance using the ID of the deployed contract and the
@@ -27,15 +27,15 @@ export const address =
 
 // function used to deposit funds
 export async function deposit(e: any) {
-  e.preventDefault();
-  const data = new FormData(e.target);
-  console.log(bn(Number(data.get("Amount"))).toNumber())
+  // e.preventDefault();
+  // const data = new FormData(e.target);
+  // console.log(bn(Number(data.get("Amount"))).toNumber())
   const deposit = await contract.functions
-    .deposit(bn(String(data.get("PoolID"))), bn(Number(data.get("Amount"))))
+    .deposit(bn(String(1)), bn(Number(0.1)))
     .txParams({ gasPrice: 1 })
-    .callParams({ forward: [bn(Number(data.get("Amount")) * (10 ** 8)), address] })
+    .callParams({ forward: [bn(Number(0.1) * (10 ** 8)), address] })
     .call();
-
+    alert("Transaction submitted successfully: "+deposit.transactionId);
   console.log("transaction", deposit);
 }
 
@@ -51,15 +51,18 @@ export async function depositTransaction(amount: any, pool_id: any) {
 
 // function to withdraw funds
 export async function withdraw(e: any) {
-  e.preventDefault();
-  const data = new FormData(e.target);
-  console.log(bn(Number(data.get("Amount"))).toNumber())
+  // e.preventDefault();
+  // const data = new FormData(e.target);
+  // console.log(bn(Number(data.get("Amount"))).toNumber())
   const withdraw = await contract.functions
-    .withdraw(bn(String(data.get("PoolID"))), bn(Number(data.get("Amount")) * (10 ** 8)))
+    .withdraw(bn(String(1)), bn(Number(0.1) * (10 ** 8)))
     .txParams({ gasPrice: 1 })
     .call();
 
   console.log("withdraw", withdraw);
+  //notify the user that the transaction has been submitted
+  alert("Transaction submitted successfully: "+withdraw.transactionId);
+
 }
 
 export async function withdrawTransaction(amount: any, pool_id: any) {

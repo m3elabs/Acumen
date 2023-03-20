@@ -49,7 +49,7 @@ function Navbar() {
           href="javascript:void(0)"
           id="myBtn2"
         >
-          Connect
+          fuel1y...35l
         </a>
         <i className="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i className="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
