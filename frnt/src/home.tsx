@@ -55,9 +55,11 @@ function Home() {
 
       try {
 
+
         const value1 = await contract.functions.get_pool_info_from_id(i).get();
         const { value } = value1;
 
+        
         const PoolInfoOutput: PoolInfoOutput = value;
 
         if (PoolInfoOutput.poolTypeIsStaking) {
